@@ -42,7 +42,7 @@ function getDonneur($nom){
 function addUser($nom, $email, $password){
     $db = dbConnect();
 
-    $req = $db->prepare('INSERT INTO users(nomDon,email,password) VALUES(?,?,?)');
+    $req = $db->prepare('INSERT INTO users(nom,email,password) VALUES(?,?,?)');
 
     if($req->execute(array($nom, $email, $password)))
         return true;

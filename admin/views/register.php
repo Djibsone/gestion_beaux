@@ -1,3 +1,8 @@
+<?php 
+	session_start();
+	include './admin/controllers/register.php' 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +15,8 @@
 
 	<div class="container">
 		<p>Formulaire d'inscription</p>
-		<form action="./admin/controllers/registerController.php" method="post">
+		<?php include 'includes/msg_error_success.php' ?>
+		<form action="" method="post">
 			<div class="inputIcon">
 				<label>Nom :</label>
 				<input type="text" id="nom" name="nom" placeholder="votre nom cmplet">
@@ -40,7 +46,7 @@
 				</span>	
 			<div>
 			<br>
-			<button type="submit" name="inscrit">S'inscrire</button>
+			<button type="submit" name="register">S'inscrire</button>
             <a href="/login">Connectez-vous ici</a>
 		</form>
 	</div>

@@ -1,3 +1,8 @@
+<?php 
+	session_start();
+	include './admin/controllers/login.php' 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +17,7 @@
 	<div class="container">
 		<p>Formulaire de connection</p>
 		<?php include 'includes/msg_error_success.php' ?>
-		<form action="controllers/indexController.php" method="post">
+		<form action="" method="post">
 			<div class="inputIcon">
 				<label>Email :</label>
 				<input type="email" id="email" name="email" placeholder="name@gmail.com">
@@ -28,7 +33,7 @@
 				</span>
 			</div>
 			<div>
-				<button type="submit" name="connecte">Se connecter</button>
+				<button type="submit" name="login">Se connecter</button>
 				<a href="#">Mot de passe oublié?</a>
 				<br><br>
 				<a href="./register">Inscrivez-vous ici</a>

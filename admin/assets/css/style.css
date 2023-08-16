@@ -15,11 +15,11 @@ body {
     padding: 40px;
     max-width: 600px;
     margin: 0 auto;
-    animation: slide-up 0.5s ease-out;
+    /* animation: slide-up 0.5s ease-out; */
     /* position: relative; */
 }
 
-@keyframes slide-up {
+/* @keyframes slide-up {
     from {
         transform: translateY(50%);
         opacity: 0;
@@ -28,7 +28,7 @@ body {
         transform: translateY(0);
         opacity: 1;
     }
-}
+} */
 
 h1 {
     text-align: center;
@@ -135,6 +135,25 @@ a:hover{
     color: rgb(10, 10, 10);
   }
 
+/* message_success_error */
+.msg {
+    margin: 10px auto; 
+    padding: 10px; 
+    color: #238224; 
+    text-align: center;
+    font-weight: 500;
+    font-size: large;
+  }
+  
+  .err {
+    margin: 10px auto; 
+    padding: 10px; 
+    color: rgb(186, 45, 45); 
+    width: 50%;
+    text-align: center;
+    font-weight: 500;
+    font-size: large;
+  }
 
 @media screen and (max-width: 768px) {
     .container {
