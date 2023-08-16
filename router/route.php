@@ -2,11 +2,20 @@
 $route = $_SERVER['REQUEST_URI'];
 
 if ($route === '/') {
-    require './views/home.php';
+    require './home.php';
+}
+else if ($route === '/home') {
+    require './admin/views/home.php';
 }
 else if ($route === '/login') {
-    require './views/login.php';
+    require './admin/views/login.php';
 }
 else if ($route === '/register') {
-    require './views/register.php';
+    require './admin/views/register.php';
+}
+else if ($route === '/donneurs') {
+    require './admin/views/liste_donneur.php';
+}
+else if ($route === '/receveurs') {
+    require './admin/views/liste_receveur.php';
 }

@@ -3,7 +3,7 @@ session_start();
 //Connexion à la base de données
 function dbConnect(){
     try{
-        $db = new PDO('mysql:host=localhost;dbname=examen;charset=utf8', 'djibril', 'tamou');
+        $db = new PDO('mysql:host=localhost;dbname=app_gestion_bœux;charset=utf8', 'djibril', 'tamou');
         return $db;
     }catch(Exception $e){
         die('Erreur : '.$e->getMessage());
@@ -11,31 +11,52 @@ function dbConnect(){
 }
 
 //Récupérer tous les users
-function getAllCandidats(){
+function getAllDonneurs(){
     $db = dbConnect();
 
-    $req = $db->query('SELECT * FROM candidat ORDER BY id DESC');
+    $req = $db->query('SELECT * FROM donneurs ORDER BY id DESC');
     $req->execute();
     return $req;
 }
 
 
 //Récupérer un user
-function getCandidat($nom){
+function getUser($email){
     $db = dbConnect();
 
-    $req = $db->prepare('SELECT * FROM candidat WHERE nom = ?');
+    $req = $db->prepare('SELECT * FROM users WHERE email = ?');
+    $req->execute(array($email));
+    return $req;
+}
+
+//Récupérer un donneur
+function getDonneur($nom){
+    $db = dbConnect();
+
+    $req = $db->prepare('SELECT * FROM donneurs WHERE nomRe = ?');
     $req->execute(array($nom));
     return $req;
 }
 
-//Ajouter un user
-function addCandidat($nom, $prenom, $datnais, $ville, $sexe, $filiere){
+//Ajouter un usr
+function addUser($nom, $email, $password){
     $db = dbConnect();
 
-    $req = $db->prepare('INSERT INTO candidat(nom,prenom,datnais,ville,sexe,codefil) VALUES(?,?,?,?,?,?)');
+    $req = $db->prepare('INSERT INTO users(nomDon,email,password) VALUES(?,?,?)');
 
-    if($req->execute(array($nom, $prenom, $datnais, $ville, $sexe, $filiere)))
+    if($req->execute(array($nom, $email, $password)))
+        return true;
+    else
+        return false;
+}
+
+//Ajouter un donneur
+function addDonneur($nom, $sexe, $nbrB){
+    $db = dbConnect();
+
+    $req = $db->prepare('INSERT INTO donneurs(nomDon,sexe,nbrBoeu) VALUES(?,?,?)');
+
+    if($req->execute(array($nom, $sexe, $nbrB)))
         return true;
     else
         return false;
