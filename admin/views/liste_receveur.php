@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	include './admin/controllers/add_liste_receveur.php';
+    global $i; 
+?>
+
 <?php include 'includes/header.php' ?>
 
     <div class="dashboard-container">
@@ -158,7 +164,7 @@
                     </div>
                 </div>
             </div>
-
+            <?php include 'includes/msg_error_success.php' ?>
             <!-- RECENT ORDERS -->
             <section class="recent-orders">
                 <div class="ro-title">
@@ -171,23 +177,25 @@
                             <th>N°</th>
                             <th>Nom des receveurs</th>
                             <th>Sexe</th>
-                            <th>Ville/Vilage(Ferme ou Champs) du receveur</th>
+                            <th>Localité des receveurs</th>
                             <th>Total des boeux réçu</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>12</td>
-                            <td>PC Gamer</td>
-                            <td>uac55012s-dpX</td>
-                            <td>Doit</td>
-                            <td class="text-fuscha">Non payee</td>
-                            <td>
-                                <button class='edit_btn edit' data-id="<?= $product['id'] ?>" title="Edit">Edit</button>
-                                <button class='del_btn delete' data-id="<?= $product['id'] ?>" title="Delete">Delete</button>
-                            </td>
-                        </tr>
+                        <?php foreach($receveurs as $receveur): ?>
+                            <tr>
+                                <td><?= $i += 1 ?></td>
+                                <td><?= $receveur['nomRe'] ?></td>
+                                <td><?= $receveur['sexe'] ?></td>
+                                <td><?= $receveur['localite'] ?></td>
+                                <td class="text-fuscha"><?= $receveur[''] ?></td>
+                                <td>
+                                    <button class='edit_btn edit' data-id="<?= $receveur['id'] ?>" title="Edit">Edit</button>
+                                    <button class='del_btn delete' data-id="<?= $receveur['id'] ?>" title="Delete">Delete</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </section>

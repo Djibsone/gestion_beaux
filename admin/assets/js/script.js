@@ -67,21 +67,79 @@ $(document).ready(function() {
     $(document).on('click', '.addnew', function(e){
         e.preventDefault();
         $('#addnew').modal('show');
-        var id = $(this).attr('data-id');
-        $('.desid').val(id);
     });
 
+    //donneur
     $(document).on('click', '.edit', function(e){
         e.preventDefault();
         $('#edit').modal('show');
         var id = $(this).attr('data-id');
-        $('.desid').val(id);
+        $('.donid').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_donneur.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+                $('#edit_nom').val(data.nomDon);
+                $('#edit_sexe').val(data.sexe);
+                $('#edit_nbre').val(data.nbrB);
+            }
+        });
     });
 
     $(document).on('click', '.delete', function(e){
         e.preventDefault();
         $('#delete').modal('show');
         var id = $(this).attr('data-id');
-        $('.desid').val(id);
+        $('.donid').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_donneur.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+              $('.donneurname').html(data.nomDon);
+            }
+        });
+    });
+
+    //receveur
+    $(document).on('click', '.edit', function(e){
+        e.preventDefault();
+        $('#edit_receve').modal('show');
+        var id = $(this).attr('data-id');
+        $('.receveid').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_receveur.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+                $('#edit_nom').val(data.nomRe);
+                $('#edit_sexe').val(data.sexe);
+                $('#edit_localite').val(data.localite);
+            }
+        });
+    });
+
+    $(document).on('click', '.delete', function(e){
+        e.preventDefault();
+        $('#delete_receve').modal('show');
+        var id = $(this).attr('data-id');
+        $('.receveid').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_receveur.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+              $('.receveurname').html(data.nomRe);
+            }
+        });
     });
 });

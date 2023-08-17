@@ -19,3 +19,24 @@ else if ($route === '/donneurs') {
 else if ($route === '/receveurs') {
     require './admin/views/liste_receveur.php';
 }
+else if ($route === '/add') {
+    require './admin/controllers/add_liste_donneur.php';
+}
+else if ($route === '/edit') {
+    require './admin/controllers/edit_delete_donneur.php';
+}
+else if ($route === '/delete') {
+    require './admin/controllers/edit_delete_donneur.php';
+}
+else if ($route === '/add_receve') {
+    require './admin/controllers/add_liste_receveur.php';
+}
+else if ($route === '/edit_receve') {
+    require './admin/controllers/edit_delete_receveur.php';
+}
+else if ($route === '/delete_receve') {
+    require './admin/controllers/edit_delete_receveur.php';
+}
+else {
+    echo '<h1>Page introuvable !</h1>';
+}

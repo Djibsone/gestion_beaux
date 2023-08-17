@@ -1,269 +1,377 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- <link rel="stylesheet" href="../assets/css/style.css"> -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <title>Gestion des boeux</title>
-</head>
-<body>
-<div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8 m-2">
-    <!-- error -->
-    <!-- <div v-if="success">
-        <p class="m-2 p-2 fw-bold text-center text-white bg-success rounded">{{ success }}</p>
-    </div> -->
-    <div class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
-        <div class="flex justify-between">
-            <div class="inline-flex border rounded w-7/12 px-2 lg:px-6 h-12 bg-transparent">
-                <div class="flex flex-wrap items-stretch w-full h-full mb-6 relative">
-                    <div class="flex">
-                        <span class="flex items-center leading-normal bg-transparent rounded rounded-r-none border border-r-0 border-none lg:px-3 py-2 whitespace-no-wrap text-grey-dark text-sm">
-                            <svg width="18" height="18" class="w-4 lg:w-auto" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.11086 15.2217C12.0381 15.2217 15.2217 12.0381 15.2217 8.11086C15.2217 4.18364 12.0381 1 8.11086 1C4.18364 1 1 4.18364 1 8.11086C1 12.0381 4.18364 15.2217 8.11086 15.2217Z" stroke="#455A64" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M16.9993 16.9993L13.1328 13.1328" stroke="#455A64" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </span>
+<?php include './admin/views/includes/header.php' ?>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="main-sidebar">
+            <header class="aside-header">
+                <div class="brand">
+                    <img src="images/cc1.png" alt="Logo" />
+                    <h3>GESTION DES BOEUX</h3>
+                </div>
+                <div class="close" id="closeSidebar">
+                    <span class="material-icons-sharp"> close </span>
+                </div>
+            </header>
+
+            <div class="sidebar" id="sidebar">
+                <ul class="list-items">
+                    <li class="item">
+                        <a href="./home">
+                            <span class="material-icons-sharp">
+                                Tableau de bord
+                            </span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="./donneurs">
+                            <span class="material-icons-sharp">
+                                Liste des donneurs
+                            </span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="./receveurs">
+                            <span class="material-icons-sharp">
+                                Liste des receveurs
+                            </span>
+                        </a>
+                    </li>
+                    <!-- <li class="item">
+                        <a href="#" class="">
+                            <span class="material-icons-sharp">
+                                insights
+                            </span>
+                            <span>Statistiques</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="active">
+                            <span class="material-icons-sharp">
+                                textsms
+                            </span>
+                            <span>Messagerie</span>
+                            <span class="message-count">17</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <span class="material-icons-sharp">
+                                inventory
+                            </span>
+                            <span>Produits</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <span class="material-icons-sharp">
+                                report
+                            </span>
+                            <span>Rapports</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <span class="material-icons-sharp">
+                                settings
+                            </span>
+                            <span>Reglages</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <span class="material-icons-sharp"> add </span>
+                            <span>Ajouter un produit</span>
+                        </a>
+                    </li> -->
+                    <li class="item">
+                        <a href="#">
+                            <span class="material-icons-sharp">
+                                Se Deconnecter
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main-container">
+            <h1 class="main-title">Admin</h1>
+
+            <!-- CARD -->
+            <div class="insights">
+                <div class="card">
+                    <div class="card-container">
+                        <div class="card-header">
+                            <span class="material-icons-sharp">
+                                bar_chart
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-info">
+                                <h3>Ventes totales</h3>
+                                <h1>2.03M</h1>
+                            </div>
+
+                            <div class="card-progress">
+                                <svg width="96" height="96">
+                                    <circle
+                                        id="circle1"
+                                        cx="38"
+                                        cy="38"
+                                        r="36"
+                                        class="stroke-yellow"
+                                    ></circle>
+                                </svg>
+                                <div class="percentage">
+                                    <p>17%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small>Sur les 48H precedentes</small>
+                        </div>
                     </div>
-                    <input type="text" v-model="q" class="flex-shrink flex-grow flex-auto leading-normal tracking-wide w-px flex-1 border border-none border-l-0 rounded rounded-l-none px-3 relative focus:outline-none text-xxs lg:text-xs lg:text-base text-gray-500 font-thin" placeholder="Search">
+                </div>
+
+                <div class="card">
+                    <div class="card-container">
+                        <div class="card-header">
+                            <span class="material-icons-sharp">
+                                add_shopping_cart
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-info">
+                                <h3>Commandes</h3>
+                                <h1>780</h1>
+                            </div>
+
+                            <div class="card-progress">
+                                <svg width="96" height="96">
+                                    <circle
+                                        id="circle2"
+                                        cx="38"
+                                        cy="38"
+                                        r="36"
+                                        class="stroke-fuscha"
+                                    ></circle>
+                                </svg>
+                                <div class="percentage">
+                                    <p>72%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small>Sur les 48H precedentes</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-container">
+                        <div class="card-header">
+                            <span class="material-icons-sharp">
+                                group_add
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-info">
+                                <h3>Clients</h3>
+                                <h1>21</h1>
+                            </div>
+
+                            <div class="card-progress">
+                                <svg
+                                    width="96"
+                                    height="96"
+                                    class="stroke-cyan"
+                                >
+                                    <circle
+                                        id="circle3"
+                                        cx="38"
+                                        cy="38"
+                                        r="36"
+                                    ></circle>
+                                </svg>
+                                <div class="percentage">
+                                    <p>43%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small>Sur les 48H precedentes</small>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="flex flex-col-md-6 mt-3 mb-2">
-        <router-link :to="{ name: 'customers.create' }" class="btn btn-outline-success">Créer un client</router-link>
-        <!-- <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Créer un client</button> -->
-    </div>
-    <div class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
-        <table class="table-auto w-full">
-        <thead>
-            <tr>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Nom des donneurs</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Nombre de bœux pour un donneur</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Sexe donneur</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Nom des receveurs</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Nombre de bœux reçu par un receveur</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Sexe receveur</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Ville/village(Champs/Ferme) du receveur</th>
-            <!-- <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Is_Favorite</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider" colspan="2">Action</th> -->
-            </tr>
-        </thead>
-            <tbody class="bg-white" v-if="customers.length > 0">
-            <tr v-for="customer in getFilteredCustomers" :key="customer.id">
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                    <div class="text-sm leading-5 text-blue-900"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5"></td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5"></td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5"></td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5"></td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5"></td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5"></td>
-                <!-- <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5"></td>
-                <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                    <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <router-link :to="{ name: 'customers.edit', params: { id: customer.id } }" class="btn btn-outline-warning mr-2">Editer</router-link>
-                        <button @click="deleteCustomer(customer.id)" class="btn btn-outline-danger">Delete</button>
+
+            <!-- RECENT ORDERS -->
+            <section class="recent-orders">
+                <div class="ro-title">
+                    <h2 class="recent-orders-title">Affichage complet</h2>
+                    <a href="#" class="show-all">Tout afficher</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Nom des donneurs</th>
+                            <th>Nombre de bœux pour un donneur</th>
+                            <th>Sexe donneur</th>
+                            <th>Nom des receveurs</th>
+                            <th>Nombre de bœux reçu par un receveur</th>
+                            <th>Sexe receveur</th>
+                            <th>Ville/village(Champs/Ferme) du receveur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12</td>
+                            <td>PC Gamer</td>
+                            <td>uac55012s-dpX</td>
+                            <td>Doit</td>
+                            <td class="text-fuscha">Non payee</td>
+                            <td>3 jours restants</td>
+                            <td>3 jours restants</td>
+                            <td>3 jours restants</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <!-- Sidebar droite -->
+        <aside class="extrabar">
+            <header class="header-right">
+                <button class="toggle-menu-btn" id="openSidebar">
+                    <span class="material-icons-sharp"> menu </span>
+                </button>
+
+                <div class="toggle-theme">
+                    <span class="material-icons-sharp active">
+                        tungsten
                     </span>
-                </td> -->
-            </tr>
-            </tbody>
-            <tbody v-else>
-                <p>Aucun client trouvé</p>
-            </tbody>
-        </table>
-    </div>
-</div>
+                    <span class="material-icons-sharp"> dark_mode </span>
+                </div>
+                <div class="profile">
+                    <div class="profile-info">
+                        <p>Salut, <strong>Coding</strong></p>
+                        <small>Admin</small>
+                    </div>
+                    <div class="profile-image">
+                        <img src="images/team-4.jpg" alt="" width="100%" />
+                    </div>
+                </div>
+            </header>
 
+            <!-- Info recentes -->
+            <div class="recent-updates">
+                <h2>Infos recentes</h2>
+                <div class="updates-container">
+                    <div class="update">
+                        <div class="profile-image">
+                            <img
+                                src="images/team-1.jpg"
+                                alt=""
+                                width="100%"
+                            />
+                        </div>
+                        <div class="message">
+                            <p>
+                                <strong>Arthur</strong> Lorem ipsum dolor
+                                sit amet consectetur adipisicing elit.
+                            </p>
+                            <small>Il y a 8 minutes</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-image">
+                            <img
+                                src="images/team-2.jpg"
+                                alt=""
+                                width="100%"
+                            />
+                        </div>
+                        <div class="message">
+                            <p>
+                                <strong>Alicia</strong> Lorem ipsum, dolor
+                                sit amet consectetur adipisicing.
+                            </p>
+                            <small>Il y a 1 heures</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-image">
+                            <img
+                                src="images/team-3.jpg"
+                                alt=""
+                                width="100%"
+                            />
+                        </div>
+                        <div class="message">
+                            <p>
+                                <strong>Thomas</strong> Lorem ipsum dolor
+                                sit amet consectetur adipisicing elit.
+                            </p>
+                            <small>Il y a 3 heures</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<!-- component -->
-<!-- <section class="container mx-auto p-6 font-mono">
-  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
-    <div class="w-full overflow-x-auto">
-      <table class="w-full">
-        <thead>
-          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-            <th class="px-4 py-3">Name</th>
-            <th class="px-4 py-3">Age</th>
-            <th class="px-4 py-3">Status</th>
-            <th class="px-4 py-3">Date</th>
-          </tr>
-        </thead>
-        <tbody class="bg-white">
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full md:block">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+            <!-- Stat -->
+            <div class="analytics">
+                <h2>Evolution des ventes</h2>
+                <div class="order direct">
+                    <div class="order-icon">
+                        <span class="material-icons-sharp">
+                            shopping_cart
+                        </span>
+                    </div>
+                    <div class="order-details">
+                        <div class="info">
+                            <h3>COMMANDES DIRECTES</h3>
+                            <small>48H precedentes</small>
+                        </div>
+                        <h4 class="percent-evo text-cyan">+18%</h4>
+                        <h3>2417</h3>
+                    </div>
                 </div>
-                <div>
-                  <p class="font-semibold text-black">Sufyan</p>
-                  <p class="text-xs text-gray-600">Developer</p>
+                <div class="order online">
+                    <div class="order-icon">
+                        <span class="material-icons-sharp"> wifi </span>
+                    </div>
+                    <div class="order-details">
+                        <div class="info">
+                            <h3>COMMANDES DIRECTES</h3>
+                            <small>48H precedentes</small>
+                        </div>
+                        <h4 class="percent-evo text-fuscha">-5%</h4>
+                        <h3>619</h3>
+                    </div>
                 </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 text-ms font-semibold border">22</td>
-            <td class="px-4 py-3 text-xs border">
-              <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Acceptable </span>
-            </td>
-            <td class="px-4 py-3 text-sm border">6/4/2000</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                <div class="order customers">
+                    <div class="order-icon">
+                        <span class="material-icons-sharp">
+                            group_add
+                        </span>
+                    </div>
+                    <div class="order-details">
+                        <div class="info">
+                            <h3>COMMANDES DIRECTES</h3>
+                            <small>48H precedentes</small>
+                        </div>
+                        <h4 class="percent-evo text-cyan">+22%</h4>
+                        <h3>411</h3>
+                    </div>
                 </div>
-                <div>
-                  <p class="font-semibold text-black">Stevens</p>
-                  <p class="text-xs text-gray-600">Programmer</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 text-md font-semibold border">27</td>
-            <td class="px-4 py-3 text-xs border">
-              <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm"> Pending </span>
-            </td>
-            <td class="px-4 py-3 text-sm border">6/10/2020</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                </div>
-                <div>
-                  <p class="font-semibold">Nora</p>
-                  <p class="text-xs text-gray-600">Designer</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 text-md font-semibold border">17</td>
-            <td class="px-4 py-3 text-xs border">
-              <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"> Nnacceptable </span>
-            </td>
-            <td class="px-4 py-3 text-sm border">6/10/2020</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                </div>
-                <div>
-                  <p class="font-semibold">Ali</p>
-                  <p class="text-xs text-gray-600">Programmer</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 border text-md font-semibold">23</td>
-            <td class="px-4 py-3 border text-xs">
-              <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Acceptable </span>
-            </td>
-            <td class="px-4 py-3 border text-sm">6/10/2020</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                </div>
-                <div>
-                  <p class="font-semibold">Khalid</p>
-                  <p class="text-xs text-gray-600">Designer</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 border text-md font-semibold">20</td>
-            <td class="px-4 py-3 border text-xs">
-              <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-sm"> Pending </span>
-            </td>
-            <td class="px-4 py-3 border text-sm">6/10/2020</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                </div>
-                <div>
-                  <p class="font-semibold">Nasser</p>
-                  <p class="text-xs text-gray-600">Pen Tester</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 border text-md font-semibold">29</td>
-            <td class="px-4 py-3 border text-xs">
-              <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Acceptable </span>
-            </td>
-            <td class="px-4 py-3 border text-sm">6/10/2020</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                </div>
-                <div>
-                  <p class="font-semibold">Mohammed</p>
-                  <p class="text-xs text-gray-600">Web Designer</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 border text-md font-semibold">38</td>
-            <td class="px-4 py-3 border text-xs">
-              <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Acceptable </span>
-            </td>
-            <td class="px-4 py-3 border text-sm">6/10/2020</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                </div>
-                <div>
-                  <p class="font-semibold">Saad</p>
-                  <p class="text-xs text-gray-600">Data</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 border text-md font-semibold">19</td>
-            <td class="px-4 py-3 border text-xs">
-              <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Acceptable </span>
-            </td>
-            <td class="px-4 py-3 border text-sm">6/10/2020</td>
-          </tr>
-          <tr class="text-gray-700">
-            <td class="px-4 py-3 border">
-              <div class="flex items-center text-sm">
-                <div class="relative w-8 h-8 mr-3 rounded-full">
-                  <img class="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
-                  <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                </div>
-                <div>
-                  <p class="font-semibold">Sami</p>
-                  <p class="text-xs text-gray-600">Developer</p>
-                </div>
-              </div>
-            </td>
-            <td class="px-4 py-3 border text-md font-semibold">21</td>
-            <td class="px-4 py-3 border text-xs">
-              <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> Acceptable </span>
-            </td>
-            <td class="px-4 py-3 border text-sm">6/10/2020</td>
-          </tr>
-        </tbody>
-      </table>
+                <button class="new-product addnew">
+                    <span class="material-icons-sharp"> add </span>
+                    <h3>Nouveau donneur-receveur</h3>
+                </button>
+            </div>
+        </aside>
     </div>
-  </div>
-</section> -->
-<?php include 'footer.php' ?>
+
+<?php include './admin/views/includes/footer.php' ?>

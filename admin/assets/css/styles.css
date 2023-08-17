@@ -95,6 +95,32 @@ a:hover {
     color: var(--text-color-third);
 }
 
+/* message_success_error */
+.msg {
+    margin: 10px auto; 
+    padding: 10px; 
+    color: #238224; 
+    text-align: center;
+    font-weight: 500;
+    font-size: large;
+  }
+  
+  .err {
+    margin: 10px auto; 
+    padding: 10px; 
+    color: rgb(186, 45, 45); 
+    width: 50%;
+    text-align: center;
+    font-weight: 500;
+    font-size: large;
+  }
+
+  /* .bold {
+    color: #800000;
+    font-size: 28;
+    font-weight: 200;
+  } */
+
 /* ================= BUTTON =================== */
 .edit_btn {
     text-decoration: none;

@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	include './admin/controllers/add_liste_donneur.php';
+    global $i; 
+?>
+
 <?php include 'includes/header.php' ?>
 
     <div class="dashboard-container">
@@ -50,7 +56,7 @@
         <!-- Main -->
         <main class="main-container">
             <h1 class="main-title">Donneurs</h1>
-
+            <?php include 'includes/msg_error_success.php' ?>
             <!-- CARD -->
             <div class="insights">
                 <div class="card">
@@ -176,16 +182,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>12</td>
-                            <td>PC Gamer</td>
-                            <td>uac55012s-dpX</td>
-                            <td class="text-fuscha">Doit</td>
-                            <td>
-                                <button class='edit_btn edit' data-id="<?= $product['id'] ?>" title="Edit">Edit</button>
-                                <button class='del_btn delete' data-id="<?= $product['id'] ?>" title="Delete">Delete</button>
-                            </td>
-                        </tr>
+                        <?php foreach($donneurs as $donneur): ?>
+                            <tr>
+                                <td><?= $i += 1 ?></td>
+                                <td><?= $donneur['nomDon'] ?></td>
+                                <td><?= $donneur['sexe'] ?></td>
+                                <td class="text-fuscha"><?= $donneur['nbrB'] ?></td>
+                                <td>
+                                    <button class='edit_btn edit' data-id="<?= $donneur['id'] ?>" title="Edit">Edit</button>
+                                    <button class='del_btn delete' data-id="<?= $donneur['id'] ?>" title="Delete">Delete</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </section>

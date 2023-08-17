@@ -10,12 +10,22 @@ function dbConnect(){
     }
 }
 
-//Récupérer tous les users
+//Récupérer tous les donneurs
 function getAllDonneurs(){
     $db = dbConnect();
 
     $req = $db->query('SELECT * FROM donneurs ORDER BY id DESC');
     $req->execute();
+    return $req;
+}
+
+// Récuếrer un donneur en fction de l'id
+function getDonneurInfo($id){
+    $db = dbConnect();
+
+    //$req = $db->prepare("SELECT *, donneurs.nomDon AS donneurname FROM donneurs WHERE id = ?");
+    $req = $db->prepare("SELECT * FROM donneurs WHERE id = ?");
+    $req->execute(array($id));
     return $req;
 }
 
@@ -33,7 +43,7 @@ function getUser($email){
 function getDonneur($nom){
     $db = dbConnect();
 
-    $req = $db->prepare('SELECT * FROM donneurs WHERE nomRe = ?');
+    $req = $db->prepare('SELECT * FROM donneurs WHERE nomDon = ?');
     $req->execute(array($nom));
     return $req;
 }
@@ -51,12 +61,12 @@ function addUser($nom, $email, $password){
 }
 
 //Ajouter un donneur
-function addDonneur($nom, $sexe, $nbrB){
+function addDonneur($nom, $sexe, $nombre){
     $db = dbConnect();
 
-    $req = $db->prepare('INSERT INTO donneurs(nomDon,sexe,nbrBoeu) VALUES(?,?,?)');
+    $req = $db->prepare('INSERT INTO donneurs(nomDon,sexe,nbrB) VALUES(?,?,?)');
 
-    if($req->execute(array($nom, $sexe, $nbrB)))
+    if($req->execute(array($nom, $sexe, $nombre)))
         return true;
     else
         return false;
@@ -98,6 +108,18 @@ function delUser($token){
         return false;
 }
 
+//Supprimer l'nfos donneur
+function delDonneur($id){
+    $db = dbConnect();
+
+    $req = $db->prepare('DELETE FROM donneurs WHERE id = ?');
+
+    if($req->execute(array($id)))
+        return true;
+    else
+        return false;
+}
+
 //Modifier un info user
 function updateUser($password, $token){
     $db = dbConnect();
@@ -110,3 +132,81 @@ function updateUser($password, $token){
         return false;
 }
 
+//Modifier un info donneur
+function updateDonneur($nom, $sexe, $nombre, $id){
+    $db = dbConnect();
+
+    $req = $db->prepare('UPDATE donneurs SET nomDon = ?, sexe = ?, nbrB = ? WHERE id = ?');
+
+    if($req->execute(array($nom, $sexe, $nombre, $id)))
+        return true;
+    else
+        return false;
+}
+
+
+/*====================== POUR LES RECEVEURS ===================*/
+// Récuperer tous les receveurs
+function getAllReceveurs(){
+    $db = dbConnect();
+
+    $req = $db->query('SELECT * FROM receveurs ORDER BY id DESC');
+    $req->execute();
+    return $req;
+}
+
+// Récuếrer un receveur en fction de l'id
+function getReceveurInfo($id){
+    $db = dbConnect();
+
+    $req = $db->prepare("SELECT * FROM receveurs WHERE id = ?");
+    $req->execute(array($id));
+    return $req;
+}
+
+//Récupérer un receveur
+function getReceveur($nom){
+    $db = dbConnect();
+
+    $req = $db->prepare('SELECT * FROM receveurs WHERE nomRe = ?');
+    $req->execute(array($nom));
+    return $req;
+}
+
+//Ajouter un receveur
+function addReceveur($nom, $sexe, $localite){
+    $db = dbConnect();
+
+    $req = $db->prepare('INSERT INTO receveurs(nomRe,sexe,localite) VALUES(?,?,?)');
+
+    if($req->execute(array($nom, $sexe, $localite)))
+        return true;
+    else
+        return false;
+}
+
+//Modifier un info receveur
+function updateReceveur($nom, $sexe, $localite, $id){
+    $db = dbConnect();
+
+    $req = $db->prepare('UPDATE receveurs SET nomRe = ?, sexe = ?, localite = ? WHERE id = ?');
+
+    if($req->execute(array($nom, $sexe, $localite, $id)))
+        return true;
+    else
+        return false;
+}
+
+//Supprimer l'nfos receveur
+function delReceveur($id){
+    $db = dbConnect();
+
+    $req = $db->prepare('DELETE FROM receveurs WHERE id = ?');
+
+    if($req->execute(array($id)))
+        return true;
+    else
+        return false;
+}
+/*
+SELECT nomDon, count(nbrB) as "nombere de beou par donneur" from donneurs group by nomDon; */

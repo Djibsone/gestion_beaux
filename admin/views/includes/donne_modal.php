@@ -7,14 +7,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-          <form class="form-horizontal" method="POST" action="../controllers/cart_delete.php">
+          <form class="form-horizontal" method="POST" action="/add">
           <div class="mb-3">
               <label for="nom" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
               <input type="text" class="form-control form-control-lg" name="nom" id="nom">
           </div>
           <div class="mb-3">
               <label class="col-form-label col-form-label-lg">Sexe:</label>
-              <select class="form-control form-control-lg" name="filiere">
+              <select class="form-control form-control-lg" name="sexe">
                 <option value="">Select le sexe</option>
                 <option value="M">Masculin</option>
                 <option value="F">Féminin</option>
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary btn-flat" name="edit">Save</button>
+            <button type="submit" class="btn btn-primary btn-flat" name="add">Save</button>
         </div>
         </form>
     </div>
@@ -39,27 +39,27 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><b><span class="productname"></span></b></h4>
+        <h4 class="modal-title"><b>Edit Donneur</b></h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-            <form class="form-horizontal" method="POST" action="../controllers/cart_delete.php">
-            <input type="hidden" class="cartid" name="cartid">
+            <form class="form-horizontal" method="POST" action="./edit">
+            <input type="hidden" class="donid" name="id">
             <div class="mb-3">
-              <label for="nom" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
-              <input type="text" class="form-control form-control-lg" name="nom" id="nom">
+              <label for="edit_nom" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
+              <input type="text" class="form-control form-control-lg" name="nom" id="edit_nom">
             </div>
             <div class="mb-3">
                 <label class="col-form-label col-form-label-lg">Sexe:</label>
-                <select class="form-control form-control-lg" name="filiere">
+                <select class="form-control form-control-lg" name="sexe" id="edit_sexe">
                   <option value="">Select le sexe</option>
                   <option value="M">Masculin</option>
                   <option value="F">Féminin</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="nombre" class="col-form-label col-form-label-lg">Nombre de boeux:</label>
-                <input type="number" class="form-control form-control-lg" name="nombre" id="nombre">
+                <label for="edit_nbre" class="col-form-label col-form-label-lg">Nombre de boeux:</label>
+                <input type="number" class="form-control form-control-lg" name="nombre" id="edit_nbre">
             </div>
         </div>
         <div class="modal-footer">
@@ -80,17 +80,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-            <form class="form-horizontal" method="POST" action="../controllers/cart_delete.php">
-            <input type="hidden" class="cartid" name="cartid">
-            <input type="hidden" class="userid" name="userid">
+            <form class="form-horizontal" method="POST" action="./delete">
+            <input type="hidden" class="donid" name="id">
             <div class="text-center">
-                <p class="">DELETE PRODUCT</p>
-                <h2 class="bold productname"></h2>
+                <p class="">DELETE DONNEUR</p>
+                <h2 class="bold donneurname"></h2>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger btn-flat">Delete</button>
+            <button type="submit" class="btn btn-danger btn-flat" name="delete">Delete</button>
         </div>
         </form>
     </div>

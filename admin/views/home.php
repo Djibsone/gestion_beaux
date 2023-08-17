@@ -220,9 +220,9 @@
                             <th>Nombre de bœux pour un donneur</th>
                             <th>Sexe donneur</th>
                             <th>Nom des receveurs</th>
-                            <th>Nombre de bœux reçu par un receveur</th>
+                            <th>Nombre de bœux reçu par receveur</th>
                             <th>Sexe receveur</th>
-                            <th>Ville/village(Champs/Ferme) du receveur</th>
+                            <th>Localité des receveurs</th>
                             <th>Action</th>
                         </tr>
                     </thead>
