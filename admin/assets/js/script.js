@@ -82,7 +82,7 @@ $(document).ready(function() {
             data: {id:id},
             dataType: 'json',
             success: function(data){
-                $('#edit_nom').val(data.nomDon);
+                $('#edit_name').val(data.nomDon);
                 $('#edit_sexe').val(data.sexe);
                 $('#edit_nbre').val(data.nbrB);
             }
@@ -120,7 +120,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data){
                 $('#edit_nom').val(data.nomRe);
-                $('#edit_sexe').val(data.sexe);
+                $('#edit_sexe_re').val(data.sexeR);
                 $('#edit_localite').val(data.localite);
             }
         });
@@ -139,6 +139,44 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data){
               $('.receveurname').html(data.nomRe);
+            }
+        });
+    });
+
+    //donneur & receveur
+    $(document).on('click', '.edit', function(e){
+        e.preventDefault();
+        $('#edit_receve').modal('show');
+        var id = $(this).attr('data-id');
+        $('.don_re_id').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_donneur_receveur.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+                $('#edit_nom_d').val(data.nomDon);
+                $('#edit_nom_r').val(data.nomRe);
+                $('#nbr_r').val(data.nbreB);
+                console.log(data);
+            }
+        });
+    });
+
+    $(document).on('click', '.delete', function(e){
+        e.preventDefault();
+        $('#delete_receve').modal('show');
+        var id = $(this).attr('data-id');
+        $('.don_re_id').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_donneur_receveur.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+              $('.don_re_name').html(data.nomDon+' & '+data.nomRe);
             }
         });
     });

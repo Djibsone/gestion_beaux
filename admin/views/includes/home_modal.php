@@ -7,29 +7,33 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-          <form class="form-horizontal" method="POST" action="../controllers/cart_delete.php">
+          <form class="form-horizontal" method="POST" action="./add_home">
           <div class="mb-3">
               <label class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
-              <select class="form-control form-control-lg" name="filiere">
+              <select class="form-control form-control-lg" name="nom_don">
                 <option value="">Select nom du donneur</option>
-                <option value="M">Masculin</option>
+                <?php foreach($donneurs as $donneur): ?>
+                  <option value="<?= $donneur['id'] ?>"><?= $donneur['nomDon'] ?></option>
+                <?php endforeach; ?>
               </select>
           </div>
           <div class="mb-3">
               <label class="col-form-label col-form-label-lg">Nom complet du receveur:</label>
-              <select class="form-control form-control-lg" name="filiere">
+              <select class="form-control form-control-lg" name="nom_re">
                 <option value="">Select nom du receveur</option>
-                <option value="M">Masculin</option>
+                <?php foreach($receveurs as $receveur): ?>
+                  <option value="<?= $receveur['id'] ?>"><?= $receveur['nomRe'] ?></option>
+                <?php endforeach; ?>
               </select>
           </div>
           <div class="mb-3">
-              <label for="nombre" class="col-form-label col-form-label-lg">Nombre de boeux à recevoir:</label>
-              <input type="number" class="form-control form-control-lg" name="nombre" id="nombre">
+              <label class="col-form-label col-form-label-lg">Nombre de boeux à recevoir:</label>
+              <input type="number" class="form-control form-control-lg" name="nombre">
           </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary btn-flat" name="edit">Save</button>
+            <button type="submit" class="btn btn-primary btn-flat" name="add">Save</button>
         </div>
         </form>
     </div>
@@ -41,29 +45,33 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><b><span class="productname"></span></b></h4>
+      <h4 class="modal-title"><b>Edit Donneur & Receveur</b></h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-            <form class="form-horizontal" method="POST" action="../controllers/cart_delete.php">
-            <input type="hidden" class="cartid" name="cartid">
+            <form class="form-horizontal" method="POST" action="./edit_home">
+            <input type="hidden" class="don_re_id" name="id">
             <div class="mb-3">
               <label class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
-              <select class="form-control form-control-lg" name="filiere">
+              <select class="form-control form-control-lg" name="nom_don" id="edit_nom_d">
                 <option value="">Select nom du donneur</option>
-                <option value="M">Masculin</option>
+                <?php foreach($donnes as $donne): ?>
+                  <option value="<?= $donne['id'] ?>"><?= $donne['nomDon'] ?></option>
+                <?php endforeach; ?>
               </select>
             </div>
             <div class="mb-3">
                 <label class="col-form-label col-form-label-lg">Nom complet du receveur:</label>
-                <select class="form-control form-control-lg" name="filiere">
+                <select class="form-control form-control-lg" name="nom_re" id="edit_nom_r">
                   <option value="">Select nom du receveur</option>
-                  <option value="M">Masculin</option>
+                  <?php foreach($receves as $receve): ?>
+                    <option value="<?= $receve['id'] ?>"><?= $receve['nomRe'] ?></option>
+                  <?php endforeach; ?>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="nombre" class="col-form-label col-form-label-lg">Nombre de boeux à recevoir:</label>
-                <input type="number" class="form-control form-control-lg" name="nombre" id="nombre">
+                <label for="nbr_r" class="col-form-label col-form-label-lg">Nombre de boeux à recevoir:</label>
+                <input type="number" class="form-control form-control-lg" name="nombre" id="nbr_r">
             </div>
         </div>
         <div class="modal-footer">
@@ -84,17 +92,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-            <form class="form-horizontal" method="POST" action="../controllers/cart_delete.php">
-            <input type="hidden" class="cartid" name="cartid">
-            <input type="hidden" class="userid" name="userid">
+            <form class="form-horizontal" method="POST" action="./delete_home">
+            <input type="hidden" class="don_re_id" name="id">
             <div class="text-center">
-                <p class="">DELETE PRODUCT</p>
-                <h2 class="bold productname"></h2>
+                <p class="">DELETE DONNEUR & RECEVEUR</p>
+                <h2 class="bold don_re_name"></h2>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger btn-flat">Delete</button>
+            <button type="submit" class="btn btn-danger btn-flat" name="delete">Delete</button>
         </div>
         </form>
     </div>

@@ -11,7 +11,7 @@
         <aside class="main-sidebar">
             <header class="aside-header">
                 <div class="brand">
-                    <img src="images/cc1.png" alt="Logo" />
+                    <img src="https://comps.canstockphoto.fr/f%C3%A2ch%C3%A9-t%C3%AAte-taureau-cliparts-vectoris%C3%A9s_csp43546163.jpg" alt="Logo" />
                     <h3>GESTION DES BOEUX</h3>
                 </div>
                 <div class="close" id="closeSidebar">

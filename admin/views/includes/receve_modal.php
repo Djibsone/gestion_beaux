@@ -51,7 +51,7 @@
             </div>
             <div class="mb-3">
                 <label class="col-form-label col-form-label-lg">Sexe:</label>
-                <select class="form-control form-control-lg" name="sexe" id="edit_sexe">
+                <select class="form-control form-control-lg" name="sexe" id="edit_sexe_re">
                   <option value="">Select le sexe</option>
                   <option value="M">Masculin</option>
                   <option value="F">Féminin</option>

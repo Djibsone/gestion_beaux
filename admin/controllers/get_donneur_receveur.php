@@ -5,6 +5,6 @@ require_once('../models/connexion.php');
 if (isset($_POST['id'])){
     $id = htmlspecialchars($_POST['id']);
 
-    $receveur = getReceveurInfo($id);
-    echo json_encode($receveur->fetch(PDO::FETCH_ASSOC));
+    $donneur_receveur = getDonneurReceveurInfo($id);
+    echo json_encode($donneur_receveur->fetch(PDO::FETCH_ASSOC));
 }

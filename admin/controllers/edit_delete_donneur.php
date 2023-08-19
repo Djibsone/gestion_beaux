@@ -43,3 +43,31 @@ if(isset($_POST['delete'])){
     }
     header('location: ./donneurs');
 }
+
+
+/*if(isset($_POST['delete'])){
+
+    if (!empty($_POST['id'])) {
+        $id = htmlspecialchars($_POST['id']);
+
+        $chek = getDonneur($id);
+        $data = $chek->fetch();
+
+        if (hash_equals($data['id_don'], $id)) {
+            $_SESSION['error'] = 'Impossible donneur deleted !';
+        }
+        else {
+            
+            $stmt = delDonneur($id);
+            if ($stmt) {
+                $_SESSION['success'] = 'Donneur deleted successfully';
+            } else {
+                $_SESSION['error'] = 'Error donneur deleted';
+            }  
+        }  
+    }
+    else{
+        $_SESSION['error'] = 'Select donneur to delete first';
+    }
+    header('location: ./donneurs');
+}*/

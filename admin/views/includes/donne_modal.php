@@ -46,8 +46,8 @@
             <form class="form-horizontal" method="POST" action="./edit">
             <input type="hidden" class="donid" name="id">
             <div class="mb-3">
-              <label for="edit_nom" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
-              <input type="text" class="form-control form-control-lg" name="nom" id="edit_nom">
+              <label for="edit_name" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
+              <input type="text" class="form-control form-control-lg" name="nom" id="edit_name">
             </div>
             <div class="mb-3">
                 <label class="col-form-label col-form-label-lg">Sexe:</label>

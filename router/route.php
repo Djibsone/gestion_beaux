@@ -37,6 +37,15 @@ else if ($route === '/edit_receve') {
 else if ($route === '/delete_receve') {
     require './admin/controllers/edit_delete_receveur.php';
 }
+else if ($route === '/add_home') {
+    require './admin/controllers/add_liste_home.php';
+}
+else if ($route === '/edit_home') {
+    require './admin/controllers/edit_delete_home.php';
+}
+else if ($route === '/delete_home') {
+    require './admin/controllers/edit_delete_home.php';
+}
 else {
     echo '<h1>Page introuvable !</h1>';
 }
