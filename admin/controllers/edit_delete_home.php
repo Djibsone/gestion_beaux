@@ -10,13 +10,46 @@ if(isset($_POST['edit'])){
         $nom_re = htmlspecialchars($_POST['nom_re']);
         $nombre = htmlspecialchars($_POST['nombre']);
 
-        $stmt = updateDonneurReceveur($nom_don, $nom_re, $nombre, $id);
-        if ($stmt) {
-            $_SESSION['success'] = 'Updated successfully';
-            
-        } else {
-            $_SESSION['error'] = 'Error the updated';
-        }  
+        $stmt = getDonneurInfo($nom_don);
+        $data = $stmt->fetch(); 
+
+        $check = getNbrBReceveur($nom_re);
+        $result = $check->fetch();
+
+        $verify = getAllD_R($nom_re);
+        $row = $verify->fetch();
+
+        if($nombre <= 0){
+            $_SESSION['error'] = 'Invalid number';
+        }
+        else {
+            if ($data['nbrB'] < $nombre) {
+                $_SESSION['error'] = 'Insufficiant number';
+            } 
+            else {
+                if ($row) {
+                    // Mettre à jour les informations existantes
+                    $retireB = $data['nbrB'] - $nombre;
+                    $ajoutB = $result['nbreB'] + $nombre;
+
+                    updateDonneReceve($ajoutB, $nom_re);
+                    updateDonne($retireB, $nom_don);
+
+                } else {
+                    // Ajouter une nouvelle entrée
+                    $retireB = $data['nbrB'] - $nombre;
+                    $ajoutB = $result['nbreB'] + $nombre;
+
+                    $stmt = updateDonneurReceveur($nom_don, $nom_re, $ajoutB, $id);
+                    if ($stmt) {
+                        $_SESSION['success'] = 'Updated successfully';
+                        updateDonne($retireB, $nom_don);
+                    } else {
+                        $_SESSION['error'] = 'Error the updated';
+                    }	
+                }
+            }
+        }
     }
     else{
         $_SESSION['error'] = 'Fill up edit donneur & receveur form first';

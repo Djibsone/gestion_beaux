@@ -145,13 +145,13 @@
                     <div class="card-container">
                         <div class="card-header">
                             <span class="material-icons-sharp">
-                                add_shopping_cart
+                                Total donneur
                             </span>
                         </div>
                         <div class="card-body">
                             <div class="card-info">
-                                <h3>Commandes</h3>
-                                <h1>780</h1>
+                                <h3>Donnuers</h3>
+                                <h1><?= $total_donneur ?></h1>
                             </div>
 
                             <div class="card-progress">
@@ -179,13 +179,13 @@
                     <div class="card-container">
                         <div class="card-header">
                             <span class="material-icons-sharp">
-                                group_add
+                                Total receveur
                             </span>
                         </div>
                         <div class="card-body">
                             <div class="card-info">
-                                <h3>Clients</h3>
-                                <h1>21</h1>
+                                <h3>Receveurs</h3>
+                                <h1><?= $total_receveur ?></h1>
                             </div>
 
                             <div class="card-progress">

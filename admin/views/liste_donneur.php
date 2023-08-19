@@ -189,6 +189,7 @@
                                 <td><?= $donneur['sexe'] ?></td>
                                 <td class="text-fuscha"><?= $donneur['nbrB'] ?></td>
                                 <td>
+                                    <!-- <button class='add_btn addnew' data-id="<?= $donneur['id'] ?>" title="Add">Add</button> -->
                                     <button class='edit_btn edit' data-id="<?= $donneur['id'] ?>" title="Edit">Edit</button>
                                     <button class='del_btn delete' data-id="<?= $donneur['id'] ?>" title="Delete">Delete</button>
                                 </td>

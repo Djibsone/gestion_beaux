@@ -8,6 +8,7 @@
       </div>
         <div class="modal-body">
           <form class="form-horizontal" method="POST" action="/add">
+          <input type="hidden" class="donid" name="id">
           <div class="mb-3">
               <label for="nom" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
               <input type="text" class="form-control form-control-lg" name="nom" id="nom">

@@ -122,6 +122,16 @@ a:hover {
   } */
 
 /* ================= BUTTON =================== */
+.add_btn {
+    text-decoration: none;
+    padding: 2px 5px;
+    /* background: #393e46; */
+    background: rgb(5, 5, 248);
+    color: white;
+    border-radius: 5px;
+    margin: 1px;
+}
+
 .edit_btn {
     text-decoration: none;
     padding: 2px 5px;
@@ -129,8 +139,7 @@ a:hover {
     color: white;
     border-radius: 5px;
     margin: 1px;
-}
-
+}*
 .del_btn {
     text-decoration: none;
     padding: 2px 5px;

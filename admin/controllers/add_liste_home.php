@@ -7,11 +7,15 @@ if(isset($_POST['add'])){
         $nom_don = htmlspecialchars($_POST['nom_don']);
         $nom_re = htmlspecialchars($_POST['nom_re']);
         $nombre = htmlspecialchars($_POST['nombre']);
-        
 
         $stmt = getDonneurInfo($nom_don);
-        //$row = $stmt->rowCount(); 
         $data = $stmt->fetch(); 
+
+        $check = getNbrBReceveur($nom_re);
+        $result = $check->fetch();
+
+        $verify = getAllD_R($nom_re);
+        $row = $verify->fetch();
 
         if($nombre <= 0){
             $_SESSION['error'] = 'Invalid number';
@@ -19,14 +23,29 @@ if(isset($_POST['add'])){
         else {
             if ($data['nbrB'] < $nombre) {
                 $_SESSION['error'] = 'Insufficiant number';
-            } else {
+            } 
+            else {
+                if ($row) {
+                    // Mettre à jour les informations existantes
+                    $retireB = $data['nbrB'] - $nombre;
+                    $ajoutB = $result['nbreB'] + $nombre;
 
-                $stmt = addDonneurReceveur($nom_don, $nom_re, $nombre);
-                if ($stmt) {
-                    $_SESSION['success'] = 'Added successfully';
+                    updateDonneReceve($ajoutB, $nom_re);
+                    updateDonne($retireB, $nom_don);
+
                 } else {
-                    $_SESSION['error'] = 'Error the added';
-                }	
+                    // Ajouter une nouvelle entrée
+                    $retireB = $data['nbrB'] - $nombre;
+                    $ajoutB = $result['nbreB'] + $nombre;
+
+                    $stmt = addDonneurReceveur($nom_don, $nom_re, $ajoutB);
+                    if ($stmt) {
+                        $_SESSION['success'] = 'Added successfully';
+                        updateDonne($retireB, $nom_don);
+                    } else {
+                        $_SESSION['error'] = 'Error the added';
+                    }	
+                }
             }
         }
     }
@@ -47,3 +66,9 @@ $donnes = getAllDonneurs();
 //recuperation des donneurs
 $receveurs = getAllReceveurs();
 $receves = getAllReceveurs();
+
+//count nbr de donneur
+$total_donneur = countDonneurs();
+
+//count nbr de receveur
+$total_receveur = countReceveurs();

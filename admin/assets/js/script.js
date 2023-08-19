@@ -67,6 +67,8 @@ $(document).ready(function() {
     $(document).on('click', '.addnew', function(e){
         e.preventDefault();
         $('#addnew').modal('show');
+        var id = $(this).attr('data-id');
+        $('.donid').val(id);
     });
 
     //donneur

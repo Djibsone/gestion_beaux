@@ -28,21 +28,20 @@ function getDonneurInfo($id){
     return $req;
 }
 
-
-//Récupérer un user
-function getUser($email){
-    $db = dbConnect();
-
-    $req = $db->prepare('SELECT * FROM users WHERE email = ?');
-    $req->execute(array($email));
-    return $req;
-}
-
 //Récupérer un donneur avant suppression
 function getDonneur($id){
     $db = dbConnect();
 
     $req = $db->prepare('SELECT DISTINCT d.id, a.id_don FROM donneurs d, avoir a WHERE d.id=a.id_don AND d.id = ?');
+    $req->execute(array($id));
+    return $req;
+}
+
+//Récupérer un donneur avant suppression
+function getUser($id){
+    $db = dbConnect();
+
+    $req = $db->prepare('SELECT * FROM users WHERE id = ?');
     $req->execute(array($id));
     return $req;
 }
@@ -71,40 +70,14 @@ function addDonneur($nom, $sexe, $nombre){
         return false;
 }
 
-//rechercher les candidats d'une filière
-function rechercheCandidats($filiere) {
+//Compter le nombre de donneurs
+function countDonneurs() {
     $db = dbConnect();
-    $req = $db->prepare('SELECT *, nom, prenom, sexe FROM candidat WHERE codefil LIKE :filiere');
-    $req->execute(array(':filiere' => '%' . $filiere . '%'));
-    return $req;
-}
 
-//select toutes les filières
-function getFilieres(){
-    $db = dbConnect();
-    $req = $db->query('SELECT * FROM filiere ORDER BY codefil DESC');
-    return $req;
-}
-
-//Compter le nombre de candidat
-function countCandidats($filiere) {
-    $db = dbConnect();
-    $stmt = $db->prepare('SELECT COUNT(*) AS total_cadits FROM candidat WHERE codefil = ?');
-    $stmt->execute(array($filiere));
+    $stmt = $db->query('SELECT COUNT(*) AS total_donneurs FROM donneurs');
+    $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result['total_cadits'];
-}
-
-//Supprimer l'nfos user dans la table password_reset
-function delUser($token){
-    $db = dbConnect();
-
-    $req = $db->prepare('DELETE FROM password_reset WHERE token_user = ?');
-
-    if($req->execute(array($token)))
-        return true;
-    else
-        return false;
+    return $result['total_donneurs'];
 }
 
 //Supprimer l'nfos donneur
@@ -119,18 +92,6 @@ function delDonneur($id){
         return false;
 }
 
-//Modifier un info user
-function updateUser($password, $token){
-    $db = dbConnect();
-
-    $req = $db->prepare('UPDATE users SET password = ? WHERE token = ?');
-
-    if($req->execute(array($password, $token)))
-        return true;
-    else
-        return false;
-}
-
 //Modifier un info donneur
 function updateDonneur($nom, $sexe, $nombre, $id){
     $db = dbConnect();
@@ -138,6 +99,18 @@ function updateDonneur($nom, $sexe, $nombre, $id){
     $req = $db->prepare('UPDATE donneurs SET nomDon = ?, sexe = ?, nbrB = ? WHERE id = ?');
 
     if($req->execute(array($nom, $sexe, $nombre, $id)))
+        return true;
+    else
+        return false;
+}
+
+//Modifier un info donneur apres la mise a jour
+function updateDonne($retire, $id){
+    $db = dbConnect();
+
+    $req = $db->prepare('UPDATE donneurs SET nbrB = ? WHERE id = ?');
+
+    if($req->execute(array($retire, $id)))
         return true;
     else
         return false;
@@ -184,6 +157,16 @@ function addReceveur($nom, $sexe, $localite){
         return false;
 }
 
+//Compter le nombre de donneurs
+function countReceveurs() {
+    $db = dbConnect();
+
+    $stmt = $db->query('SELECT COUNT(*) AS total_receveurs FROM receveurs');
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total_receveurs'];
+}
+
 //Modifier un info receveur
 function updateReceveur($nom, $sexe, $localite, $id){
     $db = dbConnect();
@@ -220,6 +203,16 @@ function getAllDonneursReceveurs(){
     return $req;
 }
 
+// Récuperer tous les avoir
+function getAllD_R($id){
+    $db = dbConnect();
+
+    //$req = $db->query('SELECT *, a.id as id_a FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re ORDER BY a.id DESC');
+    $req = $db->prepare('SELECT * FROM avoir  WHERE id_re = ?');
+    $req->execute(array($id));
+    return $req;
+}
+
 // Récuếrer un receveur en fction de l'id
 function getDonneurReceveurInfo($id){
     $db = dbConnect();
@@ -233,11 +226,11 @@ function getDonneurReceveurInfo($id){
 }
 
 //Récupérer un receveur
-function getNbrBDonneur($nom){
+function getNbrBReceveur($id_re){
     $db = dbConnect();
 
-    $req = $db->prepare('SELECT * FROM avoir WHERE nom = ?');
-    $req->execute(array($nom));
+    $req = $db->prepare('SELECT * FROM avoir WHERE id_re = ?');
+    $req->execute(array($id_re));
     return $req;
 }
 
@@ -260,6 +253,18 @@ function updateDonneurReceveur($id_don, $id_re, $nombre, $id){
     $req = $db->prepare('UPDATE avoir SET id_don = ?, id_re = ?, nbreB = ? WHERE id = ?');
 
     if($req->execute(array($id_don, $id_re, $nombre, $id)))
+        return true;
+    else
+        return false;
+}
+
+//Modifier un info receveur
+function updateDonneReceve($nombre, $id){
+    $db = dbConnect();
+
+    $req = $db->prepare('UPDATE avoir SET nbreB = ? WHERE id_re = ?');
+
+    if($req->execute(array($nombre, $id)))
         return true;
     else
         return false;
