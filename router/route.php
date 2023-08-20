@@ -13,6 +13,9 @@ else if ($route === '/login') {
 else if ($route === '/register') {
     require './admin/views/register.php';
 }
+else if ($route === '/logout') {
+    require './admin/controllers/logout.php';
+}
 else if ($route === '/donneurs') {
     require './admin/views/liste_donneur.php';
 }

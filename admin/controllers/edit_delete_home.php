@@ -16,8 +16,9 @@ if(isset($_POST['edit'])){
         $check = getNbrBReceveur($nom_re);
         $result = $check->fetch();
 
-        $verify = getAllD_R($nom_re);
-        $row = $verify->fetch();
+        $verify = getAllD_R($nom_don, $nom_re);
+        $row = $verify->rowCount();
+        //$row = $verify->fetch();
 
         if($nombre <= 0){
             $_SESSION['error'] = 'Invalid number';
@@ -32,8 +33,9 @@ if(isset($_POST['edit'])){
                     $retireB = $data['nbrB'] - $nombre;
                     $ajoutB = $result['nbreB'] + $nombre;
 
-                    updateDonneReceve($ajoutB, $nom_re);
+                    updateDonneReceve($ajoutB, $nom_don, $nom_re);
                     updateDonne($retireB, $nom_don);
+                    $_SESSION['success'] = 'Updated successfully';
 
                 } else {
                     // Ajouter une nouvelle entrée

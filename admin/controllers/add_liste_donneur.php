@@ -33,3 +33,9 @@ if(isset($_POST['add'])){
 
 //recuperation des donneurs
 $donneurs = getAllDonneurs();
+
+//count nbr de donneur
+$total_donneur = countDonneurs();
+
+//count nbr de receveur
+$total_receveur = countReceveurs();

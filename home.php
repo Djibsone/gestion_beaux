@@ -1,3 +1,9 @@
+<?php 
+
+	include './admin/controllers/add_liste_home.php';
+    global $i; 
+?>
+
 <?php include './admin/views/includes/header.php' ?>
 
     <div class="dashboard-container">
@@ -99,112 +105,7 @@
             <h1 class="main-title">Admin</h1>
 
             <!-- CARD -->
-            <div class="insights">
-                <div class="card">
-                    <div class="card-container">
-                        <div class="card-header">
-                            <span class="material-icons-sharp">
-                                bar_chart
-                            </span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-info">
-                                <h3>Ventes totales</h3>
-                                <h1>2.03M</h1>
-                            </div>
-
-                            <div class="card-progress">
-                                <svg width="96" height="96">
-                                    <circle
-                                        id="circle1"
-                                        cx="38"
-                                        cy="38"
-                                        r="36"
-                                        class="stroke-yellow"
-                                    ></circle>
-                                </svg>
-                                <div class="percentage">
-                                    <p>17%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <small>Sur les 48H precedentes</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-container">
-                        <div class="card-header">
-                            <span class="material-icons-sharp">
-                                add_shopping_cart
-                            </span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-info">
-                                <h3>Commandes</h3>
-                                <h1>780</h1>
-                            </div>
-
-                            <div class="card-progress">
-                                <svg width="96" height="96">
-                                    <circle
-                                        id="circle2"
-                                        cx="38"
-                                        cy="38"
-                                        r="36"
-                                        class="stroke-fuscha"
-                                    ></circle>
-                                </svg>
-                                <div class="percentage">
-                                    <p>72%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <small>Sur les 48H precedentes</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-container">
-                        <div class="card-header">
-                            <span class="material-icons-sharp">
-                                group_add
-                            </span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-info">
-                                <h3>Clients</h3>
-                                <h1>21</h1>
-                            </div>
-
-                            <div class="card-progress">
-                                <svg
-                                    width="96"
-                                    height="96"
-                                    class="stroke-cyan"
-                                >
-                                    <circle
-                                        id="circle3"
-                                        cx="38"
-                                        cy="38"
-                                        r="36"
-                                    ></circle>
-                                </svg>
-                                <div class="percentage">
-                                    <p>43%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <small>Sur les 48H precedentes</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include 'admin/views/includes/card.php' ?>
 
             <!-- RECENT ORDERS -->
             <section class="recent-orders">
@@ -220,22 +121,24 @@
                             <th>Nombre de bœux pour un donneur</th>
                             <th>Sexe donneur</th>
                             <th>Nom des receveurs</th>
-                            <th>Nombre de bœux reçu par un receveur</th>
+                            <th>Nombre de bœux reçu par receveur</th>
                             <th>Sexe receveur</th>
-                            <th>Ville/village(Champs/Ferme) du receveur</th>
+                            <th>Localité des receveurs</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>12</td>
-                            <td>PC Gamer</td>
-                            <td>uac55012s-dpX</td>
-                            <td>Doit</td>
-                            <td class="text-fuscha">Non payee</td>
-                            <td>3 jours restants</td>
-                            <td>3 jours restants</td>
-                            <td>3 jours restants</td>
-                        </tr>
+                        <?php foreach($donneurs_receveurs as $donneur_receveur): ?>
+                            <tr>
+                                <td><?= $i += 1 ?></td>
+                                <td><?= $donneur_receveur['nomDon'] ?></td>
+                                <td><?= $donneur_receveur['nbrB'] ?></td>
+                                <td><?= $donneur_receveur['sexe'] ?></td>
+                                <td class="text-fuscha"><?= $donneur_receveur['nomRe'] ?></td>
+                                <td><?= $donneur_receveur['nbreB'] ?></td>
+                                <td><?= $donneur_receveur['sexeR'] ?></td>
+                                <td><?= $donneur_receveur['localite'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </section>

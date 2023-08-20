@@ -19,20 +19,15 @@ if (isset($_POST['login'])) {
                         'id' => $data['id'],
                         'name' => $data['nom'],
                         'email' => $data['email'],
-                        'status' => $data['status']
                     ];
-                    header('location: ./home');
+                    header('location: /home');
                   } else {
-                    $_SESSION['success'] = 'BIENVENUE  '.$data['firstname'].'';
-                    $_SESSION['user'] = [
+                    $_SESSION['admin'] = [
                         'id' => $data['id'],
-                        'firstname' => $data['firstname'],
-                        'lastname' => $data['lastname'],
+                        'nom' => $data['nom'],
                         'email' => $data['email'],
-                        'photo' => $data['photo'],
-                        'status' => $data['status']
                     ];
-                    header('location: ./');
+                    header('location: /home');
                   }
                 } else {
                     $_SESSION['error'] = "Incorrect email or password";

@@ -14,8 +14,9 @@ if(isset($_POST['add'])){
         $check = getNbrBReceveur($nom_re);
         $result = $check->fetch();
 
-        $verify = getAllD_R($nom_re);
-        $row = $verify->fetch();
+        $verify = getAllD_R($nom_don, $nom_re);
+        $row = $verify->rowCount();
+        //$row = $verify->fetch();
 
         if($nombre <= 0){
             $_SESSION['error'] = 'Invalid number';
@@ -30,15 +31,16 @@ if(isset($_POST['add'])){
                     $retireB = $data['nbrB'] - $nombre;
                     $ajoutB = $result['nbreB'] + $nombre;
 
-                    updateDonneReceve($ajoutB, $nom_re);
+                    updateDonneReceve($ajoutB, $nom_don, $nom_re);
                     updateDonne($retireB, $nom_don);
+                    $_SESSION['success'] = 'Added successfully';
 
                 } else {
                     // Ajouter une nouvelle entrée
                     $retireB = $data['nbrB'] - $nombre;
-                    $ajoutB = $result['nbreB'] + $nombre;
+                    //$ajoutB = $result['nbreB'] + $nombre;
 
-                    $stmt = addDonneurReceveur($nom_don, $nom_re, $ajoutB);
+                    $stmt = addDonneurReceveur($nom_don, $nom_re, $nombre);
                     if ($stmt) {
                         $_SESSION['success'] = 'Added successfully';
                         updateDonne($retireB, $nom_don);

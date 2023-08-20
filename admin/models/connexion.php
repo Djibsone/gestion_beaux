@@ -38,11 +38,11 @@ function getDonneur($id){
 }
 
 //Récupérer un donneur avant suppression
-function getUser($id){
+function getUser($email){
     $db = dbConnect();
 
-    $req = $db->prepare('SELECT * FROM users WHERE id = ?');
-    $req->execute(array($id));
+    $req = $db->prepare('SELECT * FROM users WHERE email = ?');
+    $req->execute(array($email));
     return $req;
 }
 
@@ -204,12 +204,12 @@ function getAllDonneursReceveurs(){
 }
 
 // Récuperer tous les avoir
-function getAllD_R($id){
+function getAllD_R($nom_don, $nom_re){
     $db = dbConnect();
 
     //$req = $db->query('SELECT *, a.id as id_a FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re ORDER BY a.id DESC');
-    $req = $db->prepare('SELECT * FROM avoir  WHERE id_re = ?');
-    $req->execute(array($id));
+    $req = $db->prepare('SELECT * FROM avoir  WHERE id_don = ? AND  id_re = ?');
+    $req->execute(array($nom_don, $nom_re));
     return $req;
 }
 
@@ -259,12 +259,12 @@ function updateDonneurReceveur($id_don, $id_re, $nombre, $id){
 }
 
 //Modifier un info receveur
-function updateDonneReceve($nombre, $id){
+function updateDonneReceve($nombre, $id_don, $id_re){
     $db = dbConnect();
 
-    $req = $db->prepare('UPDATE avoir SET nbreB = ? WHERE id_re = ?');
+    $req = $db->prepare('UPDATE avoir SET nbreB = ? WHERE id_don = ? AND id_re = ?');
 
-    if($req->execute(array($nombre, $id)))
+    if($req->execute(array($nombre, $id_don, $id_re)))
         return true;
     else
         return false;
