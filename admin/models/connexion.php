@@ -217,7 +217,8 @@ function getAllD_R($nom_don, $nom_re){
 function getDonneurReceveurInfo($id){
     $db = dbConnect();
 
-    $req = $db->prepare('SELECT * FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
+    $req = $db->prepare('SELECT * FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE a.id = ?');
+    //$req = $db->prepare('SELECT * FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
     //$req = $db->prepare('SELECT *, d.nomDon as nomdonneur, r.nomRe as nomreceveur FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
     //$req = $db->prepare('SELECT *, d.id as idDonneur, r.id as idReceveur FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
     //$req = $db->prepare("SELECT * FROM avoir WHERE id = ?");
@@ -289,6 +290,24 @@ function delDonneurReceveur($id){
         return true;
     else
         return false;
+}
+
+
+function search($q){
+    $db = dbConnect();
+
+    $sql = "SELECT nomDon, id_re, COUNT(nbreB) AS nombre_de_boeux
+    FROM donneurs d
+    JOIN avoir a ON d.id = a.id_don
+    JOIN receveurs r ON r.id = a.id_re
+    WHERE d.nomDon LIKE :q OR r.nomRe LIKE :q
+    GROUP BY d.nomDon, r.nomRe, id_re";
+
+    // Préparation et exécution de la requête
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':q', '%' . $q . '%');
+    $stmt->execute();
+    return $stmt;
 }
 /*
 SELECT d.nomDon, r.nomRe, SUM(a.nbreB) AS nombre_de_boeux

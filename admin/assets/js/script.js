@@ -160,8 +160,9 @@ $(document).ready(function() {
             success: function(data){
                 $('#edit_nom_d').val(data.nomDon);
                 $('#edit_nom_r').val(data.nomRe);
+                //$('#edit_nom_d option[value="' + data.nomDon + '"]').prop('selected', true);
+                //$('#edit_nom_r option[value="' + data.nomRe + '"]').prop('selected', true);
                 $('#nbr_r').val(data.nbreB);
-                console.log(data);
             }
         });
     });
@@ -182,4 +183,48 @@ $(document).ready(function() {
             }
         });
     });
+
+    //search
+    /*$('#searchInput').on('input', function() {
+        var q = $(this).val();
+    
+        // Envoyer la requête de recherche au serveur
+        $.ajax({
+            url: './admin/controllers/search.php', // Endpoint de recherche
+            type: 'POST',
+            data: { q: q },
+            dataType: 'json',
+            success: function(data) {
+                // Construire la liste d'affichage des résultats
+                var resultsList = $('#searchResults');
+                resultsList.empty(); // Effacer les anciens résultats
+    
+                if (data.length > 0) {
+                    data.forEach(function(result) {
+                        var listItem = $('<li>').text(result.nomDon + ' a donné ' + result.nombre_de_boeux + ' boeux à ' + result.id_re);
+                        resultsList.append(listItem);
+                    });
+                } else {
+                    resultsList.append($('<li>').text('Aucun résultat trouvé.'));
+                }
+            }
+        });
+    });*/
+    
+    /*$('#searchInput').on('input', function() {
+        var q = $(this).val();
+
+        // Envoyer la requête de recherche au serveur
+        $.ajax({
+            url: './admin/controllers/search.php', // Endpoint de recherche
+            type: 'POST',
+            data: { q: q },
+            dataType: 'json',
+            success: function(data) {
+                // Mettre à jour l'interface avec les résultats
+                $('#searchResults').html(data);
+                console.log(data);
+            }
+        });
+    });*/
 });

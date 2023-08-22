@@ -115,7 +115,11 @@
 
             <!-- RECENT ORDERS -->
             <section class="recent-orders">
-                <div class="ro-title">
+                <!-- <form class="form-inline mb-4">
+                    <input class="form-control mr-sm-2 p-2" type="text" placeholder="Recherche..." id="searchInput">
+                    <ul id="searchResults"></ul>
+                </form> -->
+                <div class="ro-title mt-2">
                     <h2 class="recent-orders-title">Affichage complet</h2>
                     <a href="#" class="show-all">Tout afficher</a>
                 </div>
