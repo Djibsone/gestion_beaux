@@ -123,13 +123,13 @@
                     <thead>
                         <tr>
                             <th>N°</th>
-                            <th>Nom des donneurs</th>
-                            <th>Nombre de bœux pour un donneur</th>
+                            <th>Nom donneurs</th>
+                            <th>Nombre bœux restant par donneur</th>
                             <th>Sexe donneur</th>
-                            <th>Nom des receveurs</th>
-                            <th>Nombre de bœux reçu par receveur</th>
+                            <th>Nom receveurs</th>
+                            <th>Nombre bœux reçu par receveur</th>
                             <th>Sexe receveur</th>
-                            <th>Localité des receveurs</th>
+                            <th>Localité receveurs</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -138,10 +138,10 @@
                             <tr>
                                 <td><?= $i += 1 ?></td>
                                 <td><?= $donneur_receveur['nomDon'] ?></td>
-                                <td><?= $donneur_receveur['nbrB'] ?></td>
+                                <td class="text-fuscha"><?= $donneur_receveur['nbrB'] ?></td>
                                 <td><?= $donneur_receveur['sexe'] ?></td>
-                                <td class="text-fuscha"><?= $donneur_receveur['nomRe'] ?></td>
-                                <td><?= $donneur_receveur['nbreB'] ?></td>
+                                <td><?= $donneur_receveur['nomRe'] ?></td>
+                                <td class="text-fuscha"><?= $donneur_receveur['nbreB'] ?></td>
                                 <td><?= $donneur_receveur['sexeR'] ?></td>
                                 <td><?= $donneur_receveur['localite'] ?></td>
                                 <td>

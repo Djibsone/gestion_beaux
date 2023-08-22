@@ -3,7 +3,7 @@
         <div class="card-container">
             <div class="card-header">
                 <span class="material-icons-sharp">
-                Total de boeux
+                Total de bœux
                 </span>
             </div>
             <div class="card-body">
