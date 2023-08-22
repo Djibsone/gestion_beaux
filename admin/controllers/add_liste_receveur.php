@@ -34,6 +34,9 @@ if(isset($_POST['add'])){
 //recuperation des donneurs
 $receveurs = getAllReceveurs();
 
+//count nbrtotal de boeu du systeme
+$nbr_total_boeu = countTotatBoeux();
+
 //count nbr de donneur
 $total_donneur = countDonneurs();
 

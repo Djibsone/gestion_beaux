@@ -88,7 +88,7 @@
                                 <td><?= $receveur['nomRe'] ?></td>
                                 <td><?= $receveur['sexeR'] ?></td>
                                 <td><?= $receveur['localite'] ?></td>
-                                <td class="text-fuscha"><?= $receveur[''] ?></td>
+                                <td class="text-fuscha"><?= $receveur['nbr_total_de_boeux'] ?></td>
                                 <td>
                                     <button class='edit_btn edit' data-id="<?= $receveur['id'] ?>" title="Edit">Edit</button>
                                     <button class='del_btn delete' data-id="<?= $receveur['id'] ?>" title="Delete">Delete</button>

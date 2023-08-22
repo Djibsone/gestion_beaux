@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-primary btn-flat" name="add">Save</button>
         </div>
         </form>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-success btn-flat" name="edit">Update</button>
         </div>
         </form>
@@ -84,12 +84,12 @@
             <form class="form-horizontal" method="POST" action="./delete">
             <input type="hidden" class="donid" name="id">
             <div class="text-center">
-                <p class="">DELETE DONNEUR</p>
+                <p class="text-danger">DELETE DONNEUR ?</p>
                 <h2 class="bold donneurname"></h2>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-danger btn-flat" name="delete">Delete</button>
         </div>
         </form>

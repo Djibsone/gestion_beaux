@@ -10,7 +10,11 @@ if(isset($_POST['edit'])){
         $sexe = htmlspecialchars($_POST['sexe']);
         $nombre = htmlspecialchars($_POST['nombre']);
 
-        $stmt = updateDonneur($nom, $sexe, $nombre, $id);
+        $stmt = getDonneurInfo($id);
+        $data = $stmt->fetch(); 
+        $ajout = $data['nbrB'] + $nombre;
+
+        $stmt = updateDonneur($nom, $sexe, $ajout, $id);
         if ($stmt) {
             $_SESSION['success'] = 'Donneur updated successfully';
             

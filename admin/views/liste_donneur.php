@@ -76,7 +76,8 @@
                             <th>N°</th>
                             <th>Nom des donneurs</th>
                             <th>Sexe</th>
-                            <th>Total des boeux par donneur</th>
+                            <th>Total des boeux restant</th>
+                            <th>Nombre total de boeux</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,6 +88,7 @@
                                 <td><?= $donneur['nomDon'] ?></td>
                                 <td><?= $donneur['sexe'] ?></td>
                                 <td class="text-fuscha"><?= $donneur['nbrB'] ?></td>
+                                <td><?= $donneur['nbr_total_de_boeux'] ?></td>
                                 <td>
                                     <!-- <button class='add_btn addnew' data-id="<?= $donneur['id'] ?>" title="Add">Add</button> -->
                                     <button class='edit_btn edit' data-id="<?= $donneur['id'] ?>" title="Edit">Edit</button>

@@ -3,13 +3,13 @@
         <div class="card-container">
             <div class="card-header">
                 <span class="material-icons-sharp">
-                    bar_chart
+                Total de boeux
                 </span>
             </div>
             <div class="card-body">
                 <div class="card-info">
-                    <h3>Ventes totales</h3>
-                    <h1>2.03M</h1>
+                    <h3>Boeux</h3>
+                    <h1><?= $nbr_total_boeu ?></h1>
                 </div>
 
                 <div class="card-progress">

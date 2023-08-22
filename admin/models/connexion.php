@@ -14,7 +14,8 @@ function dbConnect(){
 function getAllDonneurs(){
     $db = dbConnect();
 
-    $req = $db->query('SELECT * FROM donneurs ORDER BY id DESC');
+    //$req = $db->query('SELECT * FROM donneurs ORDER BY id DESC');
+    $req = $db->query('SELECT d.id, d.nomDon, d.sexe, d.nbrB, a.id_don, SUM(a.nbreB) AS nbr_total_de_boeux FROM donneurs d JOIN avoir a ON d.id = a.id_don GROUP BY d.nomDon, d.sexe, d.nbrB, a.id_don ORDER BY d.id DESC');
     $req->execute();
     return $req;
 }
@@ -74,9 +75,8 @@ function addDonneur($nom, $sexe, $nombre){
 function countDonneurs() {
     $db = dbConnect();
 
-    $stmt = $db->query('SELECT COUNT(*) AS total_donneurs FROM donneurs');
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $req = $db->query('SELECT COUNT(*) AS total_donneurs FROM donneurs');
+    $result = $req->fetch(PDO::FETCH_ASSOC);
     return $result['total_donneurs'];
 }
 
@@ -122,7 +122,8 @@ function updateDonne($retire, $id){
 function getAllReceveurs(){
     $db = dbConnect();
 
-    $req = $db->query('SELECT * FROM receveurs ORDER BY id DESC');
+    //$req = $db->query('SELECT * FROM receveurs ORDER BY id DESC');
+    $req = $db->query('SELECT r.id, r.nomRe, r.sexeR, r.localite, a.id_re, SUM(a.nbreB) AS nbr_total_de_boeux FROM receveurs r JOIN avoir a ON r.id = a.id_re GROUP BY r.nomRe, r.sexeR, r.localite, a.id_re ORDER BY r.id DESC');
     $req->execute();
     return $req;
 }
@@ -161,9 +162,8 @@ function addReceveur($nom, $sexe, $localite){
 function countReceveurs() {
     $db = dbConnect();
 
-    $stmt = $db->query('SELECT COUNT(*) AS total_receveurs FROM receveurs');
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $req = $db->query('SELECT COUNT(*) AS total_receveurs FROM receveurs');
+    $result = $req->fetch(PDO::FETCH_ASSOC);
     return $result['total_receveurs'];
 }
 
@@ -234,6 +234,15 @@ function getNbrBReceveur($id_re){
     return $req;
 }
 
+//Compter le nombre total de boeux du systeme
+function countTotatBoeux() {
+    $db = dbConnect();
+
+    $req = $db->query('SELECT SUM(nbreB) AS nbr_total_de_boeux FROM avoir');
+    $result = $req->fetch(PDO::FETCH_ASSOC);
+    return $result['nbr_total_de_boeux'];
+}
+
 //Ajouter un receveur
 function addDonneurReceveur($id_don, $id_re, $nombre){
     $db = dbConnect();
@@ -282,4 +291,12 @@ function delDonneurReceveur($id){
         return false;
 }
 /*
-SELECT nomDon, count(nbrB) as "nombere de beou par donneur" from donneurs group by nomDon; */
+SELECT d.nomDon, r.nomRe, SUM(a.nbreB) AS nombre_de_boeux
+FROM donneurs d
+JOIN avoir a ON d.id = a.id_don
+JOIN receveurs r ON a.id_re = r.id
+GROUP BY d.nomDon, r.nomRe;
+
+SELECT id_re, SUM(nbreB) AS nombre_total_de_boeux
+FROM avoir GROUP BY id_re;
+*/

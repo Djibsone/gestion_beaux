@@ -69,6 +69,9 @@ $donnes = getAllDonneurs();
 $receveurs = getAllReceveurs();
 $receves = getAllReceveurs();
 
+//count nbrtotal de boeu du systeme
+$nbr_total_boeu = countTotatBoeux();
+
 //count nbr de donneur
 $total_donneur = countDonneurs();
 
