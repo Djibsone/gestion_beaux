@@ -1,5 +1,5 @@
 <?php
-require_once('./admin/models/connexion.php');
+require_once('../models/connexion.php');
 
 if(isset($_POST['q'])) {
     $q = $_POST['q'];

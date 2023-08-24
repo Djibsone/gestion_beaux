@@ -115,15 +115,14 @@
 
             <!-- RECENT ORDERS -->
             <section class="recent-orders">
-                <!-- <form class="form-inline mb-4">
-                    <input class="form-control mr-sm-2 p-2" type="text" placeholder="Recherche..." id="searchInput">
-                    <ul id="searchResults"></ul>
-                </form> -->
+                <form class="form-inline col-md-12 mb-4">
+                    <input class="form-control" type="text" placeholder="Recherche..." id="searchInput">
+                </form>
                 <div class="ro-title mt-2">
                     <h2 class="recent-orders-title">Affichage complet</h2>
                     <a href="#" class="show-all">Tout afficher</a>
                 </div>
-                <table>
+                <table id="searchResultsTable">
                     <thead>
                         <tr>
                             <th>N°</th>
@@ -138,24 +137,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($donneurs_receveurs as $donneur_receveur): ?>
-                            <tr>
-                                <td><?= $i += 1 ?></td>
-                                <td><?= $donneur_receveur['nomDon'] ?></td>
-                                <td class="text-fuscha"><?= $donneur_receveur['nbrB'] ?></td>
-                                <td><?= $donneur_receveur['sexe'] ?></td>
-                                <td><?= $donneur_receveur['nomRe'] ?></td>
-                                <td class="text-fuscha"><?= $donneur_receveur['nbreB'] ?></td>
-                                <td><?= $donneur_receveur['sexeR'] ?></td>
-                                <td><?= $donneur_receveur['localite'] ?></td>
-                                <td>
-                                    <button class='edit_btn edit' data-id="<?= $donneur_receveur['id'] ?>" title="Edit">Edit</button>
-                                    <button class='del_btn delete' data-id="<?= $donneur_receveur['id'] ?>" title="Delete">Delete</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                        <?= $table; ?>
                     </tbody>
                 </table>
+                <div class="error mt-2"></div>
             </section>
         </main>
 

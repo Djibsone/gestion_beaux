@@ -115,6 +115,14 @@ a:hover {
     font-size: large;
   }
 
+  /* searche */
+  #searchInput {
+    font-size: large;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #fff;
+    padding: 8px;
+  }
   /* .bold {
     color: #800000;
     font-size: 28;

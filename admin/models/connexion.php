@@ -199,7 +199,7 @@ function getAllDonneursReceveurs(){
 
     //$req = $db->query('SELECT *, a.id as id_a FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re ORDER BY a.id DESC');
     $req = $db->query('SELECT a.*, d.nomDon, d.sexe, d.nbrB, r.nomRe, r.sexeR, r.localite FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re ORDER BY id DESC');
-    $req->execute();
+    //$req->execute();
     return $req;
 }
 
@@ -296,18 +296,16 @@ function delDonneurReceveur($id){
 function search($q){
     $db = dbConnect();
 
-    $sql = "SELECT nomDon, id_re, COUNT(nbreB) AS nombre_de_boeux
-    FROM donneurs d
-    JOIN avoir a ON d.id = a.id_don
-    JOIN receveurs r ON r.id = a.id_re
-    WHERE d.nomDon LIKE :q OR r.nomRe LIKE :q
-    GROUP BY d.nomDon, r.nomRe, id_re";
-
-    // Préparation et exécution de la requête
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(':q', '%' . $q . '%');
-    $stmt->execute();
-    return $stmt;
+    // $sql = "SELECT nomDon, id_re, COUNT(nbreB) AS nombre_de_boeux
+    // FROM donneurs d
+    // JOIN avoir a ON d.id = a.id_don
+    // JOIN receveurs r ON r.id = a.id_re
+    // WHERE d.nomDon LIKE :q OR r.nomRe LIKE :q
+    // GROUP BY d.nomDon, r.nomRe, id_re";
+    $req = $db->prepare('SELECT a.*, d.nomDon, d.sexe, d.nbrB, r.nomRe, r.sexeR, r.localite FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE d.nomDon LIKE :q OR r.nomRe LIKE :q');
+    $req->bindValue(':q', '%' . $q . '%');
+    $req->execute();
+    return $req;
 }
 /*
 SELECT d.nomDon, r.nomRe, SUM(a.nbreB) AS nombre_de_boeux

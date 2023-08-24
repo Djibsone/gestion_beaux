@@ -66,8 +66,8 @@
 
             <!-- RECENT ORDERS -->
             <section class="recent-orders">
-                <!-- <form class="form-inline mb-4">
-                    <input class="form-control mr-sm-2 p-2" type="text" placeholder="Recherche..." id="searchInput">
+                <!-- <form class="form-inline col-md-12 mb-4">
+                    <input class="form-control" type="text" placeholder="Recherche..." id="searchInput">
                 </form> -->
                 <div class="ro-title mt-2">
                     <h2 class="recent-orders-title">Liste des receveurs</h2>

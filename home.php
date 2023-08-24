@@ -127,16 +127,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($donneurs_receveurs as $donneur_receveur): ?>
+                        <?php foreach($donnes_receves as $donne_receve): ?>
                             <tr>
                                 <td><?= $i += 1 ?></td>
-                                <td><?= $donneur_receveur['nomDon'] ?></td>
-                                <td class="text-fuscha"><?= $donneur_receveur['nbrB'] ?></td>
-                                <td><?= $donneur_receveur['sexe'] ?></td>
-                                <td><?= $donneur_receveur['nomRe'] ?></td>
-                                <td class="text-fuscha"><?= $donneur_receveur['nbreB'] ?></td>
-                                <td><?= $donneur_receveur['sexeR'] ?></td>
-                                <td><?= $donneur_receveur['localite'] ?></td>
+                                <td><?= $donne_receve['nomDon'] ?></td>
+                                <td class="text-fuscha"><?= $donne_receve['nbrB'] ?></td>
+                                <td><?= $donne_receve['sexe'] ?></td>
+                                <td><?= $donne_receve['nomRe'] ?></td>
+                                <td class="text-fuscha"><?= $donne_receve['nbreB'] ?></td>
+                                <td><?= $donne_receve['sexeR'] ?></td>
+                                <td><?= $donne_receve['localite'] ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -159,8 +159,7 @@
                 </div>
                 <div class="profile">
                     <div class="profile-info">
-                        <p>Salut, <strong>Coding</strong></p>
-                        <small>Admin</small>
+                        <p>Salut, <strong><?= ($_SESSION['admin']) ? $_SESSION['admin']['nom'] : 'User'?></strong></p>
                     </div>
                     <div class="profile-image">
                         <img src="images/team-4.jpg" alt="" width="100%" />

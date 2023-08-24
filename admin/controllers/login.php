@@ -23,11 +23,9 @@ if (isset($_POST['login'])) {
                     header('location: /home');
                   } else {
                     $_SESSION['admin'] = [
-                        'id' => $data['id'],
-                        'nom' => $data['nom'],
-                        'email' => $data['email'],
+                        'nom' => $data['nom']
                     ];
-                    header('location: /home');
+                    header('location: /');
                   }
                 } else {
                     $_SESSION['error'] = "Incorrect email or password";
