@@ -52,13 +52,13 @@
             <form class="form-horizontal" method="POST" action="./edit_home">
             <input type="hidden" class="don_re_id" name="id">
             <div class="mb-3">
-              <label class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
+              <label for="edit_nom_d" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
               <select class="form-control form-control-lg" name="nom_don" id="edit_nom_d">
-                <option value="">Select nom du donneur</option>
-                <?php foreach($donnes as $donne): ?>
-                  <option value="<?= $donne['id'] ?>"><?= $donne['nomDon'] ?></option>
-                <?php endforeach; ?>
-              </select>
+                  <option value="">Select nom du donneur</option>
+                  <?php foreach($donnes as $donne): ?>
+                    <option value="<?= $donne['id'] ?>"><?= $donne['nomDon'] ?></option>
+                  <?php endforeach; ?>
+                </select>
             </div>
             <div class="mb-3">
                 <label class="col-form-label col-form-label-lg">Nom complet du receveur:</label>
@@ -107,3 +107,15 @@
     </div>
   </div>
 </div>
+
+
+<!-- <div class="mb-3">
+              <label for="edit_nom_d" class="col-form-label col-form-label-lg">Nom complet du donneur:</label>
+              <select class="form-control form-control-lg edit_nom_d" name="nom_don" id="select_don">
+              </select>
+            </div>
+            <div class="mb-3">
+                <label class="col-form-label col-form-label-lg">Nom complet du receveur:</label>
+                <select class="form-control form-control-lg edit_nom_r" name="nom_re" id="select_re">
+                </select>
+            </div> -->

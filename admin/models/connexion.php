@@ -15,7 +15,7 @@ function getAllDonneurs(){
     $db = dbConnect();
 
     //$req = $db->query('SELECT * FROM donneurs ORDER BY id DESC');
-    $req = $db->query('SELECT d.id, d.nomDon, d.sexe, d.nbrB, a.id_don, SUM(a.nbreB) AS nbr_total_de_boeux FROM donneurs d JOIN avoir a ON d.id = a.id_don GROUP BY d.nomDon, d.sexe, d.nbrB, a.id_don ORDER BY d.id DESC');
+    $req = $db->query('SELECT d.*, a.id_don, SUM(a.nbreB) AS nbr_total_de_boeux FROM donneurs d JOIN avoir a ON d.id = a.id_don GROUP BY d.nomDon, d.sexe, d.nbrB, a.id_don ORDER BY d.id DESC');
     $req->execute();
     return $req;
 }

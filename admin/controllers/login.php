@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
                   if ($data['statut'] === 1) {
                     $_SESSION['admin'] = [
                         'id' => $data['id'],
-                        'name' => $data['nom'],
+                        'nom' => $data['nom'],
                         'email' => $data['email'],
                     ];
                     header('location: /home');

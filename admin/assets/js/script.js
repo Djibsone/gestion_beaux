@@ -184,48 +184,56 @@ $(document).ready(function() {
         });
     });
 
-    //search
+    //selecteur donneur
     /*$.ajax({
-        url: './admin/controllers/get_donneur_receveur.php',
-        //url: './admin/controllers/get_d_r.php',
-        type: 'get',
-        dataType: 'json',
-        success: function(data) {
-            var tab = $('#tab');        
-            
-            if (data.length > 0) {
-                data.forEach(function(item, index) {
-                    var row = `
-                        <tr>
-                            <td>${index + 1}</td>
-                            <td>${item.nomDon}</td>
-                            <td class="text-fuscha">${item.nbrB}</td>
-                            <td>${item.sexe}</td>
-                            <td>${item.nomRe}</td>
-                            <td class="text-fuscha">${item.nbreB}</td>
-                            <td>${item.sexeR}</td>
-                            <td>${item.localite}</td>
-                            <td>
-                                <button class='edit_btn edit' data-id="${item.id}" title="Edit">Edit</button>
-                                <button class='del_btn delete' data-id="${item.id}" title="Delete">Delete</button>
-                            </td>
-                        </tr>
-                    `;
-            
-                    tab.append(row);
-                });
-            }
-            console.log(data);
+        url: './admin/controllers/get_d_r.php',
+        method: 'get',
+        dataType:'json',
+        success: function(response) {
+          var select = document.getElementById('select_don');
+    
+          // Générer les options du champ select
+          response.forEach(function(item) {
+            var option = document.createElement('option');
+            option.value = item.id;
+            option.text = item.nomDon;
+            select.appendChild(option);
+          });
+        },
+        error: function() {
+          console.log('Erreur lors de la récupération des données depuis le serveur.');
+        }
+    });
+
+    //selecteur receveur
+    $.ajax({
+        url: './admin/controllers/get_d_r.php',
+        method: 'get',
+        dataType:'json',
+        success: function(response) {
+            var select = document.getElementById('select_re');
+    
+            // Générer les options du champ select
+            response.forEach(function(item) {
+            var option = document.createElement('option');
+            option.value = item.id;
+            option.text = item.nomRe;
+            select.appendChild(option);
+            });
+        },
+        error: function() {
+            console.log('Erreur lors de la récupération des données depuis le serveur.');
         }
     });*/
 
+    //search
     $('#searchInput').on('input', function() {
         var q = $(this).val();
     
         // Envoyer la requête de recherche au serveur via AJAX
         $.ajax({
             url: './admin/controllers/search.php',
-            type: 'POST',
+            type: 'post',
             data: { q: q },
             dataType: 'json',
             success: function(data) {
@@ -267,123 +275,4 @@ $(document).ready(function() {
             error.append(("<h2>Aucun résultat trouvé.</h2>"));
         }
     }
-    
-    /*$('#searchInput').on('input', function() {
-        var q = $(this).val();
-        var resultsTable = $('#resultsTable'); // Remplacez "resultsTable" par l'ID de votre tableau
-        resultsTable.empty(); // Effacer les anciens résultats
-    
-        if (q === '') {
-            // Si le champ de recherche est vide, restaurer les données originales
-            originalData.forEach(function(result) {
-                var row = $('<tr>').append(
-                    $('<td>').text(result.nbrB),
-                    $('<td>').text(result.sexe),
-                    $('<td>').text(result.nomRe),
-                    $('<td>').text(result.nbreB),
-                    $('<td>').text(result.sexeR),
-                    $('<td>').text(result.localite),
-                    $('<td>').html(
-                        '<button class="edit_btn edit" data-id="' + result.id + '" title="Edit">Edit</button>' +
-                        '<button class="del_btn delete" data-id="' + result.id + '" title="Delete">Delete</button>'
-                    )
-                );
-                resultsTable.append(row);
-            });
-        } else {
-            // Filtrer les données en fonction de la recherche et afficher les résultats filtrés
-            var filteredData = originalData.filter(function(result) {
-                // Ajoutez votre logique de filtrage ici, par exemple :
-                return result.nomDon.toLowerCase().includes(q.toLowerCase());
-            });
-    
-            filteredData.forEach(function(result) {
-                var row = $('<tr>').append(
-                    $('<td>').text(result.sexe),
-                    $('<td>').text(result.nomRe),
-                    $('<td>').text(result.nbreB),
-                    $('<td>').text(result.sexeR),
-                    $('<td>').text(result.localite),
-                    $('<td>').html(
-                        '<button class="edit_btn edit" data-id="' + result.id + '" title="Edit">Edit</button>' +
-                        '<button class="del_btn delete" data-id="' + result.id + '" title="Delete">Delete</button>'
-                    )
-                );
-                resultsTable.append(row);
-            });
-        }
-    });*/
-    
-    /*$('#searchInput').on('input', function() {
-        var q = $(this).val();
-    
-        // Envoyer la requête de recherche au serveur
-        $.ajax({
-            url: './admin/controllers/search.php', // Endpoint de recherche
-            type: 'POST',
-            data: { q: q },
-            dataType: 'json',
-            /*success: function(data) {
-                // Construire la liste d'affichage des résultats
-                var resultsList = $('#searchResults');
-                resultsList.empty(); // Effacer les anciens résultats
-    
-                if (data.length > 0) {
-                    data.forEach(function(result) {
-                        var listItem = $('<li>').text(result.nomDon + ' a donné ' + result.nbreB + ' boeux à ' + result.nomRe);
-                        resultsList.append(listItem);
-                    });
-                } else {
-                    resultsList.append($('<li>').text('Aucun résultat trouvé.'));
-                }
-                console.log(data);
-
-            }*/
-            
-            // ...
-
-        /*success: function(data) {
-            var resultsTable = $('#searchResultsTable');
-            resultsTable.empty(); // Effacer les anciens résultats
-
-            if (data.length > 0) {
-                data.forEach(function(result) {
-                    var row = $('<tr>').append(
-                        $('<td>').text(result.nomDon),
-                        $('<td>').text(result.nbreB),
-                        $('<td>').text(result.sexe),
-                        $('<td>').text(result.nomRe),
-                        $('<td>').text(result.nbreB), // Utilisé pour le nombre de boeux reçus
-                        $('<td>').text(result.sexeR),
-                        $('<td>').text(result.localite),
-                        $('<td>').html('<button class="edit_btn edit" data-id="' + result.id + '" title="Edit">Edit</button>' +
-                                    '<button class="del_btn delete" data-id="' + result.id + '" title="Delete">Delete</button>')
-                    );
-                    resultsTable.append(row);
-                });
-            } else {
-                resultsTable.append($('<tr>').append($('<td colspan="8">').text('Aucun résultat trouvé.')));
-            }
-        }/
-//....
-
-        });
-    });
-    
-    $('#searchInput').on('input', function() {
-        var q = $(this).val();
-
-        // Envoyer la requête de recherche au serveur
-        $.ajax({
-            url: './admin/controllers/search.php', // Endpoint de recherche
-            type: 'POST',
-            data: { q: q },
-            dataType: 'json',
-            success: function(data) {
-                // Mettre à jour l'interface avec les résultats
-                $('#searchResults').html(data);
-                console.log(data);
-            }
-        });
-    });*/
 });
