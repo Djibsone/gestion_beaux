@@ -118,4 +118,43 @@
                 <label class="col-form-label col-form-label-lg">Nom complet du receveur:</label>
                 <select class="form-control form-control-lg edit_nom_r" name="nom_re" id="select_re">
                 </select>
-            </div> -->
+            </div> 
+          //selecteur
+          <div class="modal fade" id="edit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="donneur">
+          <option selected>Open this select menu</option>
+          <?php foreach($donnes as $donne): ?>
+            <option value="<?= $donne['id'] ?>"><?= $donne['nomDon'] ?></option>
+          <?php endforeach; ?>
+        </select>
+        
+      </div>
+      <div class="modal-body">
+        
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+-->

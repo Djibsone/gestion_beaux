@@ -217,10 +217,10 @@ function getAllD_R($nom_don, $nom_re){
 function getDonneurReceveurInfo($id){
     $db = dbConnect();
 
-    $req = $db->prepare('SELECT * FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE a.id = ?');
+    $req = $db->prepare('SELECT a.*, FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE a.id = ?');
+    //$req = $db->prepare('SELECT * FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE a.id = ?');
     //$req = $db->prepare('SELECT * FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
     //$req = $db->prepare('SELECT *, d.nomDon as nomdonneur, r.nomRe as nomreceveur FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
-    //$req = $db->prepare('SELECT *, d.id as idDonneur, r.id as idReceveur FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
     //$req = $db->prepare("SELECT * FROM avoir WHERE id = ?");
     $req->execute(array($id));
     return $req;
