@@ -123,7 +123,7 @@
         </div>
         <button class="new-product addnew">
             <span class="material-icons-sharp"> add </span>
-            <h3>Nouveau donneur-receveur</h3>
+            <h3>Nouvel enregistrement</h3>
         </button>
     </div>
 </aside>

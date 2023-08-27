@@ -10,6 +10,101 @@ function dbConnect(){
     }
 }
 
+
+/*====================== POUR LES USERS ===================*/
+//Récupérer tous les users
+function getAllUsers(){
+    $db = dbConnect();
+
+    $req = $db->query('SELECT * FROM users ORDER BY id DESC');
+    $req->execute();
+    return $req;
+}
+
+// Récuếrer un user en fction de l'id
+function getUserInfo($id){
+    $db = dbConnect();
+
+    $req = $db->prepare("SELECT * FROM users WHERE id = ?");
+    $req->execute(array($id));
+    return $req;
+}
+
+//Récupérer un user
+function getUser($email){
+    $db = dbConnect();
+
+    $req = $db->prepare('SELECT * FROM users WHERE email = ?');
+    $req->execute(array($email));
+    return $req;
+}
+
+//Ajouter un usr
+function addUser($nom, $email, $password){
+    $db = dbConnect();
+
+    $req = $db->prepare('INSERT INTO users(nom,email,password) VALUES(?,?,?)');
+
+    if($req->execute(array($nom, $email, $password)))
+        return true;
+    else
+        return false;
+}
+
+//Compter le nombre de user
+function countUserrs() {
+    $db = dbConnect();
+
+    $req = $db->query('SELECT COUNT(*) AS total_users FROM users');
+    $result = $req->fetch(PDO::FETCH_ASSOC);
+    return $result['total_users'];
+}
+
+//Supprimer l'nfos user
+function delUser($id){
+    $db = dbConnect();
+
+    $req = $db->prepare('DELETE FROM users WHERE id = ?');
+
+    if($req->execute(array($id)))
+        return true;
+    else
+        return false;
+}
+
+//Modifier un info user
+function updateUser($nom, $sexe, $nombre, $id){
+    $db = dbConnect();
+
+    $req = $db->prepare('UPDATE users SET nomDon = ?, sexe = ?, nbrB = ? WHERE id = ?');
+
+    if($req->execute(array($nom, $sexe, $nombre, $id)))
+        return true;
+    else
+        return false;
+}
+
+
+//activer un info user
+function updateUserActive($id){
+    $db = dbConnect();
+
+    $req = $db->prepare('UPDATE users SET statut = 1 WHERE id = ?');
+    $req->execute(array($id));
+    return $req;
+}
+
+//activer un info user
+function updateUserDesactive($id){
+    $db = dbConnect();
+
+    $req = $db->prepare('UPDATE users SET statut = 0 WHERE id = ?');
+    $req->execute(array($id));
+    return $req;
+}
+
+
+/*====================== POUR LES DONNEURS ===================*/
 //Récupérer tous les donneurs
 function getAllDonneurs(){
     $db = dbConnect();
@@ -36,27 +131,6 @@ function getDonneur($id){
     $req = $db->prepare('SELECT DISTINCT d.id, a.id_don FROM donneurs d, avoir a WHERE d.id=a.id_don AND d.id = ?');
     $req->execute(array($id));
     return $req;
-}
-
-//Récupérer un donneur avant suppression
-function getUser($email){
-    $db = dbConnect();
-
-    $req = $db->prepare('SELECT * FROM users WHERE email = ?');
-    $req->execute(array($email));
-    return $req;
-}
-
-//Ajouter un usr
-function addUser($nom, $email, $password){
-    $db = dbConnect();
-
-    $req = $db->prepare('INSERT INTO users(nom,email,password) VALUES(?,?,?)');
-
-    if($req->execute(array($nom, $email, $password)))
-        return true;
-    else
-        return false;
 }
 
 //Ajouter un donneur
@@ -217,7 +291,7 @@ function getAllD_R($nom_don, $nom_re){
 function getDonneurReceveurInfo($id){
     $db = dbConnect();
 
-    $req = $db->prepare('SELECT a.*, FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE a.id = ?');
+    $req = $db->prepare('SELECT a.*, d.nomDon, d.id, r.nomRe, r.id FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE a.id = ?');
     //$req = $db->prepare('SELECT * FROM donneurs d JOIN avoir a ON d.id = a.id_don JOIN receveurs r ON r.id = a.id_re WHERE a.id = ?');
     //$req = $db->prepare('SELECT * FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');
     //$req = $db->prepare('SELECT *, d.nomDon as nomdonneur, r.nomRe as nomreceveur FROM donneurs d, receveurs r, avoir a WHERE d.id=a.id_don AND r.id=a.id_re AND a.id = ?');

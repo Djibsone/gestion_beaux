@@ -22,6 +22,21 @@ else if ($route === '/donneurs') {
 else if ($route === '/receveurs') {
     require './admin/views/liste_receveur.php';
 }
+else if ($route === '/users') {
+    require './admin/views/user.php';
+}
+else if ($route === '/edit_user') {
+    require './admin/controllers/edit_delete_user.php';
+}
+else if ($route === '/delete_user') {
+    require './admin/controllers/edit_delete_user.php';
+}
+else if ($route === '/active') {
+    require './admin/controllers/active_desactive.php';
+}
+else if ($route === '/desactive') {
+    require './admin/controllers/active_desactive.php';
+}
 else if ($route === '/add') {
     require './admin/controllers/add_liste_donneur.php';
 }

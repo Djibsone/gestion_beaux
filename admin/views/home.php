@@ -45,15 +45,14 @@
                             </span>
                         </a>
                     </li>
-                    <!-- <li class="item">
-                        <a href="#" class="">
+                    <li class="item">
+                        <a href="./users" class="">
                             <span class="material-icons-sharp">
-                                insights
+                                Liste des utilisatuers
                             </span>
-                            <span>Statistiques</span>
                         </a>
                     </li>
-                    <li class="item">
+                    <!-- <li class="item">
                         <a href="#" class="active">
                             <span class="material-icons-sharp">
                                 textsms

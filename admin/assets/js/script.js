@@ -71,6 +71,84 @@ $(document).ready(function() {
         $('.donid').val(id);
     });
 
+    //user
+    $(document).on('click', '.edit', function(e){
+        e.preventDefault();
+        $('#user_edit').modal('show');
+        var id = $(this).attr('data-id');
+        $('.user_id').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_user.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+                $('#user_nom').val(data.nom);
+                $('#user_email').val(data.email);
+                $('#user_password').val(data.password);
+                //$('#user_c_password').val(data.c);
+            }
+        });
+    });
+
+    $(document).on('click', '.delete', function(e){
+        e.preventDefault();
+        $('#user_delete').modal('show');
+        var id = $(this).attr('data-id');
+        $('.user_id').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_user.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+              $('.user_name').html(data.nom);
+            }
+        });
+    });
+
+    $(document).on('click', '.btn_active', function(e){
+        e.preventDefault();
+        $('#user_active').modal('show');
+        var id = $(this).attr('data-id');
+        $('.active_id').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_user.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+                $('.user_name').html(data.nom);
+            },
+            error: function() {
+                console.log('Error the active user.');
+            }
+        });
+    });
+
+    $(document).on('click', '.btn_desactive', function(e){
+        e.preventDefault();
+        $('#user_desactive').modal('show');
+        var id = $(this).attr('data-id');
+        $('.desactive_id').val(id);
+
+        $.ajax({
+            url: "./admin/controllers/get_user.php",
+            type: "post",
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+                $('.user_name').html(data.nom);
+            },
+            error: function() {
+                console.log('Error the desactive user.');
+            }
+        });
+    });
+
     //donneur
     $(document).on('click', '.edit', function(e){
         e.preventDefault();

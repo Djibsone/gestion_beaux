@@ -59,17 +59,8 @@ if(isset($_POST['add'])){
 }
 
 
-//recuperation des donneurs & receveurs
-$donneurs_receveurs = getAllDonneursReceveurs();
-$donnes_receves = getAllDonneursReceveurs();
-
-//recuperation des donneurs
-$donneurs = getAllDonneurs();
-$donnes = getAllDonneurs();
-
-//recuperation des donneurs
-$receveurs = getAllReceveurs();
-$receves = getAllReceveurs();
+//recuperation des donneurs & user
+$users = getAllUsers();
 
 //count nbrtotal de boeu du systeme
 $nbr_total_boeu = countTotatBoeux();
@@ -81,20 +72,16 @@ $total_donneur = countDonneurs();
 $total_receveur = countReceveurs();
 
 //table
-foreach($donneurs_receveurs as $donneur_receveur) {
+foreach($users as $user) {
     $table .= '
         <tr>
-            <td><?= $i += 1 ?></td>
-            <td>'. $donneur_receveur['nomDon'] .'</td>
-            <td class="text-fuscha">'. $donneur_receveur['nbrB'] .'</td>
-            <td>'. $donneur_receveur['sexe'] .'</td>
-            <td>'. $donneur_receveur['nomRe'] .'</td>
-            <td class="text-fuscha">'. $donneur_receveur['nbreB'] .'</td>
-            <td>'. $donneur_receveur['sexeR'] .'</td>
-            <td>'. $donneur_receveur['localite'] .'</td>
+            <td>'. ($i += 1) .'</td>
+            <td>'. $user['nom'] .'</td>
+            <td>'. $user['email'] .'</td>
+            <td class="text-fuscha">'. ($user['statut'] == 1 ? '<button class="btn btn-outline-secondary btn_desactive" data-id="' . $user['id'] . '" title="desactive">Desactive</button>' : '<button class="btn btn-outline-info btn_active" data-id="' . $user['id'] . '" title="active">Active</button>') .'</td>
             <td>
-                <button class="btn btn-outline-success m-1 edit" data-id="'. $donneur_receveur['id'] .'" title="Edit">Edit</button>
-                <button class="btn btn-outline-danger m-1 delete" data-id="'. $donneur_receveur['id'] .'" title="Delete">Delete</button>
+                <button class="btn btn-outline-success m-1 edit" data-id="'. $user['id'] .'" title="Edit">Edit</button>
+                <button class="btn btn-outline-danger m-1 delete" data-id="'. $user['id'] .'" title="Delete">Delete</button>
             </td>
         </tr>
     ';

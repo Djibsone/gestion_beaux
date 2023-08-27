@@ -32,8 +32,8 @@
           </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary btn-flat" name="add">Save</button>
+            <button type="button" class="btn -outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-outline-primary btn-flat" name="add">Save</button>
         </div>
         </form>
     </div>
@@ -75,8 +75,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-success btn-flat" name="edit">Update</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-outline-success btn-flat" name="edit">Update</button>
         </div>
         </form>
     </div>
@@ -100,8 +100,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-danger btn-flat" name="delete">Delete</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-outline-danger btn-flat" name="delete">Delete</button>
         </div>
         </form>
     </div>

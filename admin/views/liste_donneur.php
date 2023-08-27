@@ -44,6 +44,13 @@
                         </a>
                     </li>
                     <li class="item">
+                        <a href="./users" class="">
+                            <span class="material-icons-sharp">
+                                Liste des utilisatuers
+                            </span>
+                        </a>
+                    </li>
+                    <li class="item">
                         <a href="/logout">
                             <span class="material-icons-sharp">
                                 Se Deconnecter
@@ -93,9 +100,8 @@
                                 <td class="text-fuscha"><?= $donneur['nbrB'] ?></td>
                                 <td><?= $donneur['nbr_total_de_boeux'] ?></td>
                                 <td>
-                                    <!-- <button class='add_btn addnew' data-id="<?= $donneur['id'] ?>" title="Add">Add</button> -->
-                                    <button class='edit_btn edit' data-id="<?= $donneur['id'] ?>" title="Edit">Edit</button>
-                                    <button class='del_btn delete' data-id="<?= $donneur['id'] ?>" title="Delete">Delete</button>
+                                    <button class="btn btn-outline-success m-1 edit" data-id="'. $donneur['id'] .'" title="Edit">Edit</button>
+                                    <button class="btn btn-outline-danger m-1 delete" data-id="'. $donneur['id'] .'" title="Delete">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
