@@ -100,11 +100,12 @@
                                 <td class="text-fuscha"><?= $donneur['nbrB'] ?></td>
                                 <td><?= $donneur['nbr_total_de_boeux'] ?></td>
                                 <td>
-                                    <button class="btn btn-outline-success m-1 edit" data-id="'. $donneur['id'] .'" title="Edit">Edit</button>
-                                    <button class="btn btn-outline-danger m-1 delete" data-id="'. $donneur['id'] .'" title="Delete">Delete</button>
+                                    <button class="btn btn-outline-success m-1 edit" data-id="<?= $donneur['id'] ?>" title="Edit">Edit</button>
+                                    <button class="btn btn-outline-danger m-1 delete" data-id="<?= $donneur['id'] ?>" title="Delete">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+
                     </tbody>
                 </table>
             </section>

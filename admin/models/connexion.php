@@ -109,8 +109,8 @@ function updateUserDesactive($id){
 function getAllDonneurs(){
     $db = dbConnect();
 
-    //$req = $db->query('SELECT * FROM donneurs ORDER BY id DESC');
-    $req = $db->query('SELECT d.*, a.id_don, SUM(a.nbreB) AS nbr_total_de_boeux FROM donneurs d JOIN avoir a ON d.id = a.id_don GROUP BY d.nomDon, d.sexe, d.nbrB, a.id_don ORDER BY d.id DESC');
+    $req = $db->query('SELECT d.*, COALESCE(SUM(a.nbreB), 0) AS nbr_total_de_boeux FROM donneurs d LEFT JOIN avoir a ON d.id = a.id_don GROUP BY d.id ORDER BY d.id DESC');
+    //$req = $db->query('SELECT d.*, a.id_don, SUM(a.nbreB) AS nbr_total_de_boeux FROM donneurs d JOIN avoir a ON d.id = a.id_don GROUP BY d.nomDon, d.sexe, d.nbrB, a.id_don ORDER BY d.id DESC');
     $req->execute();
     return $req;
 }
@@ -197,7 +197,7 @@ function getAllReceveurs(){
     $db = dbConnect();
 
     //$req = $db->query('SELECT * FROM receveurs ORDER BY id DESC');
-    $req = $db->query('SELECT r.id, r.nomRe, r.sexeR, r.localite, a.id_re, SUM(a.nbreB) AS nbr_total_de_boeux FROM receveurs r JOIN avoir a ON r.id = a.id_re GROUP BY r.nomRe, r.sexeR, r.localite, a.id_re ORDER BY r.id DESC');
+    $req = $db->query('SELECT r.*, COALESCE(SUM(a.nbreB), 0) AS nbr_total_de_boeux FROM receveurs r LEFT JOIN avoir a ON r.id = a.id_re GROUP BY r.id ORDER BY r.id DESC');
     $req->execute();
     return $req;
 }

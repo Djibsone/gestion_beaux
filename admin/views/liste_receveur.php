@@ -100,8 +100,8 @@
                                 <td><?= $receveur['localite'] ?></td>
                                 <td class="text-fuscha"><?= $receveur['nbr_total_de_boeux'] ?></td>
                                 <td>
-                                    <button class="btn btn-outline-success m-1 edit" data-id="'. $receveur['id'] .'" title="Edit">Edit</button>
-                                    <button class="btn btn-outline-danger m-1 delete" data-id="'. $receveur['id'] .'" title="Delete">Delete</button>
+                                    <button class="btn btn-outline-success m-1 edit" data-id="<?= $receveur['id'] ?>" title="Edit">Edit</button>
+                                    <button class="btn btn-outline-danger m-1 delete" data-id="<?= $receveur['id'] ?>" title="Delete">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
