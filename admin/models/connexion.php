@@ -73,12 +73,12 @@ function delUser($id){
 }
 
 //Modifier un info user
-function updateUser($nom, $sexe, $nombre, $id){
+function updateUser($nom, $passord, $id){
     $db = dbConnect();
 
-    $req = $db->prepare('UPDATE users SET nomDon = ?, sexe = ?, nbrB = ? WHERE id = ?');
+    $req = $db->prepare('UPDATE users SET nom = ?, password = ? WHERE id = ?');
 
-    if($req->execute(array($nom, $sexe, $nombre, $id)))
+    if($req->execute(array($nom, $passord, $id)))
         return true;
     else
         return false;

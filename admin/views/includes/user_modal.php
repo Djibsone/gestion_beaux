@@ -54,12 +54,12 @@
 				      <input type="email" class="form-control form-control-lg" id="user_email" disabled>
           </div>
           <div class="mb-3">
-              <label for="" class="col-form-label col-form-label-lg">Mot de paase :</label>
-				      <input type="password" class="form-control form-control-lg" name="password" id="user_password">
+              <label for="" class="col-form-label col-form-label-lg">Current mot de passe :</label>
+				      <input type="password" class="form-control form-control-lg" name="curr_password" placeholder="***********">
           </div>
           <div class="mb-3">
-              <label for="" class="col-form-label col-form-label-lg">Comfirmer mot de passe :</label>
-				      <input type="password" class="form-control form-control-lg" name="c_password" placeholder="***********">
+              <label for="" class="col-form-label col-form-label-lg">Mot de paase :</label>
+				      <input type="password" class="form-control form-control-lg" name="password" id="user_password">
           </div>
         </div>
         <div class="modal-footer">
