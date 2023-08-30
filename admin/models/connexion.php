@@ -149,7 +149,7 @@ function addDonneur($nom, $sexe, $nombre){
 function countDonneurs() {
     $db = dbConnect();
 
-    $req = $db->query('SELECT COUNT(*) AS total_donneurs FROM donneurs');
+    $req = $db->query('SELECT COALESCE(COUNT(*), 0) AS total_donneurs FROM donneurs');
     $result = $req->fetch(PDO::FETCH_ASSOC);
     return $result['total_donneurs'];
 }
@@ -232,11 +232,11 @@ function addReceveur($nom, $sexe, $localite){
         return false;
 }
 
-//Compter le nombre de donneurs
+//Compter le nombre de receveurs
 function countReceveurs() {
     $db = dbConnect();
 
-    $req = $db->query('SELECT COUNT(*) AS total_receveurs FROM receveurs');
+    $req = $db->query('SELECT COALESCE(COUNT(*), 0) AS total_receveurs FROM receveurs');
     $result = $req->fetch(PDO::FETCH_ASSOC);
     return $result['total_receveurs'];
 }
@@ -257,7 +257,7 @@ function updateReceveur($nom, $sexe, $localite, $id){
 function delReceveur($id){
     $db = dbConnect();
 
-    $req = $db->prepare('DELETE FROM receveurs WHERE id = ?');
+    $req = $db->prepare('DELETE FROM reCOALESCEceveurs WHERE id = ?');
 
     if($req->execute(array($id)))
         return true;
@@ -313,7 +313,7 @@ function getNbrBReceveur($id_re){
 function countTotatBoeux() {
     $db = dbConnect();
 
-    $req = $db->query('SELECT SUM(nbreB) AS nbr_total_de_boeux FROM avoir');
+    $req = $db->query('SELECT COALESCE(SUM(nbreB), 0) AS nbr_total_de_boeux FROM avoir');
     $result = $req->fetch(PDO::FETCH_ASSOC);
     return $result['nbr_total_de_boeux'];
 }

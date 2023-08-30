@@ -87,7 +87,6 @@ $(document).ready(function() {
                 $('#user_nom').val(data.nom);
                 $('#user_email').val(data.email);
                 $('#user_password').val(data.password);
-                //$('#user_c_password').val(data.c);
             }
         });
     });
@@ -341,8 +340,8 @@ $(document).ready(function() {
                         <td>${item.sexeR}</td>
                         <td>${item.localite}</td>
                         <td>
-                            <button class='edit_btn edit' data-id="${item.id}" title="Edit">Edit</button>
-                            <button class='del_btn delete' data-id="${item.id}" title="Delete">Delete</button>
+                            <button class='btn btn-outline-success m-1 edit' data-id="${item.id}" title="Edit">Edit</button>
+                            <button class='btn btn-outline-danger m-1 delete' data-id="${item.id}" title="Delete">Delete</button>
                         </td>
                     </tr>
                 `;
